@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECHNOFASCISME — Cartographie d'un pouvoir émergent</title>
+<meta name="description" content="Exploration pédagogique et visuelle du technofascisme : ses origines, ses figures, son infrastructure et les enjeux pour nos démocraties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Index-specific overrides */
+  .hero-definition {
+    max-width: var(--content-default);
+    margin: 0 auto var(--space-20);
+    padding: 0 var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .hero-definition { grid-template-columns: 1fr; gap: var(--space-8); }
+  }
+  .definition-box {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    border-left: 3px solid var(--color-red-bright);
+  }
+  .definition-box h3 {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-red-bright);
+    margin-bottom: var(--space-4);
+  }
+  .definition-box p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  .definition-box.cyan-box {
+    border-left-color: var(--color-cyan);
+  }
+  .definition-box.cyan-box h3 { color: var(--color-cyan); }
+
+  .hub-intro {
+    max-width: var(--content-default);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-8);
+    text-align: center;
+  }
+
+  .hub-intro h2 {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+  }
+
+  .hub-intro p {
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hub-section {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-24);
+  }
+
+  .network-section {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-24);
+  }
+
+  .network-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+    justify-content: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .marquee-wrapper {
+    overflow: hidden;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    padding: var(--space-3) 0;
+    background: var(--color-surface-card);
+    margin-bottom: var(--space-12);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--space-8);
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .marquee-item::after {
+    content: '//';
+    color: var(--color-red-bright);
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Technofascisme — Accueil">
+      <svg class="logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="1" y="1" width="26" height="26" rx="4" stroke="#c8102e" stroke-width="1.5"/>
+        <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#c8102e" stroke-width="1.5" fill="rgba(200,16,46,0.15)"/>
+        <circle cx="14" cy="14" r="2.5" fill="#00d4ff"/>
+        <line x1="14" y1="1" x2="14" y2="7" stroke="#c8102e" stroke-width="1"/>
+        <line x1="14" y1="21" x2="14" y2="27" stroke="#c8102e" stroke-width="1"/>
+        <line x1="1" y1="14" x2="7" y2="14" stroke="#c8102e" stroke-width="1"/>
+        <line x1="21" y1="14" x2="27" y2="14" stroke="#c8102e" stroke-width="1"/>
+      </svg>
+      TECHNO<span class="accent">FASCISME</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="index.html">Accueil</a>
+      <a href="pages/origines.html">Origines</a>
+      <a href="pages/figures.html">Figures</a>
+      <a href="pages/infrastructure.html">Infrastructure</a>
+      <a href="pages/ideologies.html">Idéologies</a>
+      <a href="pages/democraties.html">Démocraties</a>
+    </nav>
+    <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-red" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-cyan" aria-hidden="true"></div>
+
+  <p class="hero-eyebrow">Une exploration · figures, idéologies, enjeux</p>
+  <h1 class="hero-title glitch">
+    <span class="line-1">TECHNO</span>
+    <span class="line-2">FASCISME</span>
+  </h1>
+  <p class="hero-subtitle">
+    Comment les géants de la technologie convergent avec des idéologies autoritaires pour remodeler le pouvoir, éroder les démocraties et construire un nouvel ordre mondial.
+  </p>
+  <div class="hero-cta-group">
+    <a href="pages/origines.html" class="btn btn-primary">Explorer l'histoire</a>
+    <a href="pages/figures.html" class="btn btn-secondary">Les figures clés</a>
+    <a href="#chapters" class="btn btn-ghost">Voir les chapitres</a>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>SCROLL</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M8 3v10M4 9l4 4 4-4"/>
+    </svg>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrapper" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Surveillance de masse</span>
+    <span class="marquee-item">Palantir · ICE · DOGE</span>
+    <span class="marquee-item">Dark Enlightenment</span>
+    <span class="marquee-item">Algorithmes de radicalisation</span>
+    <span class="marquee-item">IA militaire · Anduril</span>
+    <span class="marquee-item">Capture d'État</span>
+    <span class="marquee-item">Post-humanisme</span>
+    <span class="marquee-item">Curtis Yarvin · NRx</span>
+    <span class="marquee-item">Peter Thiel · Fondateurs Fund</span>
+    <span class="marquee-item">Accélérationnisme e/acc</span>
+    <span class="marquee-item">Network State</span>
+    <span class="marquee-item">Libertarianisme autoritaire</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">Surveillance de masse</span>
+    <span class="marquee-item">Palantir · ICE · DOGE</span>
+    <span class="marquee-item">Dark Enlightenment</span>
+    <span class="marquee-item">Algorithmes de radicalisation</span>
+    <span class="marquee-item">IA militaire · Anduril</span>
+    <span class="marquee-item">Capture d'État</span>
+    <span class="marquee-item">Post-humanisme</span>
+    <span class="marquee-item">Curtis Yarvin · NRx</span>
+    <span class="marquee-item">Peter Thiel · Fondateurs Fund</span>
+    <span class="marquee-item">Accélérationnisme e/acc</span>
+    <span class="marquee-item">Network State</span>
+    <span class="marquee-item">Libertarianisme autoritaire</span>
+  </div>
+</div>
+
+<!-- DEFINITION -->
+<section aria-label="Définitions clés">
+  <div class="hero-definition fade-in">
+    <div class="definition-box">
+      <h3>Définition</h3>
+      <p>Le technofascisme désigne la <strong>convergence d'un libertarianisme autoritaire avec des pratiques et imaginaires fascistes</strong>, dans laquelle les outils technologiques modernes deviennent le vecteur d'un coup d'État graduel contre les institutions démocratiques.</p>
+      <p style="margin-top:1rem; font-size: var(--text-xs); color: var(--color-text-faint); font-family: var(--font-mono);">— Tesquet & Hadjadji, Divergences, 2025</p>
+    </div>
+    <div class="definition-box cyan-box">
+      <h3>Contexte immédiat</h3>
+      <p>Depuis 2025, des <strong>oligarques de la tech — Musk, Thiel, Andreessen</strong> — ont investi massivement dans l'administration Trump, obtenu un accès sans précédent aux données fédérales, et déploient des outils de surveillance à une échelle jamais vue dans une démocratie libérale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section aria-labelledby="stats-heading">
+  <div class="section">
+    <div id="stats-heading" class="sr-only">Chiffres clés</div>
+    <div class="stats-grid fade-in">
+      <div class="stat-card stat-red">
+        <div class="stat-number" data-target="970.5" data-suffix="M$">0M$</div>
+        <div class="stat-label">Contrats fédéraux Palantir en 2025 (+120% vs 2024)</div>
+      </div>
+      <div class="stat-card stat-cyan">
+        <div class="stat-number" data-target="1700" data-suffix="%">0%</div>
+        <div class="stat-label">Hausse du cours Palantir en 3 ans</div>
+      </div>
+      <div class="stat-card stat-amber">
+        <div class="stat-number" data-target="49.8" data-suffix="M$">0M$</div>
+        <div class="stat-label">Dons d'Andreessen à des candidats d'extrême droite en 2024</div>
+      </div>
+      <div class="stat-card stat-green">
+        <div class="stat-number" data-target="15" data-suffix="M$">0M$</div>
+        <div class="stat-label">Financement de Peter Thiel pour la campagne de JD Vance</div>
+      </div>
+      <div class="stat-card stat-red">
+        <div class="stat-number" data-target="100" data-suffix="M€">0M€</div>
+        <div class="stat-label">Amendes RGPD contre Clearview AI en Europe</div>
+      </div>
+      <div class="stat-card stat-cyan">
+        <div class="stat-number" data-target="3.14" data-suffix="Mds$">0Mds$</div>
+        <div class="stat-label">Prévisions de revenus Palantir pour 2026 (+60%)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPITRES -->
+<section id="chapters" aria-labelledby="chapters-heading">
+  <div class="hub-intro fade-in">
+    <p class="section-eyebrow">Cartographie</p>
+    <h2 id="chapters-heading">Explorer les dimensions</h2>
+    <p>Six entrées thématiques pour comprendre comment le technofascisme s'organise, se justifie et se déploie.</p>
+  </div>
+
+  <div class="hub-section">
+    <div class="hub-grid fade-in">
+
+      <a href="pages/origines.html" class="hub-card" data-color="red">
+        <span class="hub-card-number" aria-hidden="true">01</span>
+        <div class="hub-card-emoji" aria-hidden="true">🏛️</div>
+        <h3>Origines &amp; Généalogie</h3>
+        <p>Du fascisme japonais des années 1930 au cyberlibertarianisme de la Silicon Valley. Gorz, Pasolini, Eco : les théoriciens qui ont anticipé.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Explorer →</div>
+      </a>
+
+      <a href="pages/figures.html" class="hub-card" data-color="cyan">
+        <span class="hub-card-number" aria-hidden="true">02</span>
+        <div class="hub-card-emoji" aria-hidden="true">👤</div>
+        <h3>Les Figures Clés</h3>
+        <p>Musk, Thiel, Andreessen, Yarvin, Vance, Srinivasan : qui sont ces hommes qui veulent « rebooter » la démocratie ?</p>
+        <div class="hub-card-arrow" aria-hidden="true">Profils →</div>
+      </a>
+
+      <a href="pages/infrastructure.html" class="hub-card" data-color="amber">
+        <span class="hub-card-number" aria-hidden="true">03</span>
+        <div class="hub-card-emoji" aria-hidden="true">🔬</div>
+        <h3>Infrastructure &amp; Secteurs</h3>
+        <p>Palantir, Clearview AI, Anduril, DOGE : la cartographie des entreprises et contrats qui construisent l'appareil de surveillance.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Cartographier →</div>
+      </a>
+
+      <a href="pages/ideologies.html" class="hub-card" data-color="purple">
+        <span class="hub-card-number" aria-hidden="true">04</span>
+        <div class="hub-card-emoji" aria-hidden="true">🧠</div>
+        <h3>Idéologies sous-jacentes</h3>
+        <p>NRx, Dark Enlightenment, e/acc, transhumanisme, longtermisme : le corpus idéologique derrière les grandes décisions de la tech.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Décrypter →</div>
+      </a>
+
+      <a href="pages/democraties.html" class="hub-card" data-color="green">
+        <span class="hub-card-number" aria-hidden="true">05</span>
+        <div class="hub-card-emoji" aria-hidden="true">⚖️</div>
+        <h3>Enjeux Démocratiques</h3>
+        <p>Capture d'État, érosion des contre-pouvoirs, privatisation du débat public, concentration informationnelle : ce que ça change pour nos sociétés.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Analyser →</div>
+      </a>
+
+      <a href="#network-section" class="hub-card" data-color="orange">
+        <span class="hub-card-number" aria-hidden="true">06</span>
+        <div class="hub-card-emoji" aria-hidden="true">🕸️</div>
+        <h3>Carte des réseaux</h3>
+        <p>Visualisation interactive des connexions entre figures, entreprises, idéologies et institutions. Glissez les nœuds pour explorer.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Visualiser ↓</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- NETWORK -->
+<section id="network-section" aria-labelledby="network-heading">
+  <div class="network-section">
+    <div class="section-header fade-in" style="text-align:center">
+      <span class="section-eyebrow">Visualisation interactive</span>
+      <h2 id="network-heading" class="section-title" style="margin:0 auto">Réseau de pouvoir</h2>
+      <p class="section-lead" style="margin:var(--space-4) auto 0">Connexions entre les acteurs clés du technofascisme. <strong style="color:var(--color-text)">Glissez les nœuds</strong> pour explorer les liens.</p>
+    </div>
+    <div class="network-container fade-in" style="margin-top:var(--space-8)">
+      <canvas id="network-canvas" role="img" aria-label="Réseau de connexions entre acteurs du technofascisme"></canvas>
+    </div>
+    <div class="network-legend fade-in">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#c8102e"></div>
+        Figures politiques
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#00d4ff"></div>
+        Entreprises tech
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#f59e0b"></div>
+        Institutions
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#7c3aed"></div>
+        Idéologies
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section aria-label="Citation">
+  <div class="section">
+    <div class="quote-block fade-in">
+      <blockquote>
+        "Il n'y a pas dans notre avenir une prise de pouvoir terroriste, mais il peut y avoir un populisme télévisuel ou Internet, dans lequel la réponse émotionnelle d'un groupe de citoyens sélectionné peut être présentée et acceptée comme la Voix du Peuple."
+      </blockquote>
+      <cite>Umberto Eco, Ur-Fascism (Fascisme Éternel), 1995 — The New York Review of Books</cite>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">TECHNO<span>FASCISME</span> — Infographie pédagogique</div>
+    <nav class="footer-nav" aria-label="Navigation pied de page">
+      <a href="pages/origines.html">Origines</a>
+      <a href="pages/figures.html">Figures</a>
+      <a href="pages/infrastructure.html">Infrastructure</a>
+      <a href="pages/ideologies.html">Idéologies</a>
+      <a href="pages/democraties.html">Démocraties</a>
+    </nav>
+    <p class="footer-credit">
+      Réalisé par <a href="https://tristan.pro" target="_blank" rel="noopener noreferrer" class="footer-author">Tristan Mendès France</a> — 
+      Sources : New Yorker, Philosophie Magazine, The Guardian, TNI, Jacobin, EFF, Wired, Time · 
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
