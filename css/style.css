@@ -1434,3 +1434,24 @@ hr.section-divider {
   .stats-grid { grid-template-columns: 1fr; }
   .hero-cta-group { flex-direction: column; align-items: center; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-grid-bg,
+  .hero-glow,
+  .marquee-track,
+  .hero-scroll-hint,
+  .glitch::before,
+  .glitch::after {
+    animation: none !important;
+  }
+}

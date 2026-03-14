@@ -19,15 +19,26 @@
   const navLinks = document.querySelector('.nav-links');
   if (btn && navLinks) {
     btn.addEventListener('click', () => {
-      navLinks.classList.toggle('mobile-open');
+      const isOpen = navLinks.classList.toggle('mobile-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
     });
     document.addEventListener('click', (e) => {
       if (!btn.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove('mobile-open');
+        btn.setAttribute('aria-expanded', 'false');
       }
     });
   }
 })();
+
+// ── Keyboard support for interactive cards ──────────────────────
+document.querySelectorAll('[role="button"][onclick]').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    el.click();
+  });
+});
 
 // ── Modal system ────────────────────────────────────────────────
 window.ModalSystem = {
@@ -36,13 +47,20 @@ window.ModalSystem = {
     if (!backdrop) return;
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) this.close(id);
-    });
-    backdrop.querySelector('.modal-close')?.addEventListener('click', () => this.close(id));
-    document.addEventListener('keydown', this._escHandler = (e) => {
+    if (!backdrop.dataset.bound) {
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) this.close(id);
+      });
+      backdrop.querySelector('.modal-close')?.addEventListener('click', () => this.close(id));
+      backdrop.dataset.bound = 'true';
+    }
+    if (this._escHandler) {
+      document.removeEventListener('keydown', this._escHandler);
+    }
+    this._escHandler = (e) => {
       if (e.key === 'Escape') this.close(id);
-    });
+    };
+    document.addEventListener('keydown', this._escHandler);
   },
   close(id) {
     const backdrop = document.getElementById('modal-' + id);

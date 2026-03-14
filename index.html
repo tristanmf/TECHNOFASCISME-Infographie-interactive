@@ -62,6 +62,99 @@
   }
   .definition-box.cyan-box h3 { color: var(--color-cyan); }
 
+  .home-method {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-20);
+  }
+
+  .method-grid,
+  .reading-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .panorama-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-10);
+  }
+
+  .method-card,
+  .panorama-card,
+  .reading-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+  }
+
+  .reading-card {
+    text-decoration: none;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+
+  .reading-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-bright);
+    box-shadow: var(--shadow-card);
+  }
+
+  .method-card h3,
+  .panorama-card h3,
+  .reading-card h3 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+  }
+
+  .method-card p,
+  .panorama-card p,
+  .reading-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    max-width: 100%;
+  }
+
+  .panorama-kicker,
+  .reading-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    margin-bottom: var(--space-3);
+  }
+
+  .panorama-card ul,
+  .reading-card ul {
+    list-style: none;
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .panorama-card li,
+  .reading-card li {
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  .panorama-card li::before,
+  .reading-card li::before {
+    content: '↳ ';
+    color: var(--color-cyan);
+  }
+
+  .reading-card strong {
+    color: var(--color-text);
+  }
+
   .hub-intro {
     max-width: var(--content-default);
     margin: 0 auto;
@@ -155,6 +248,12 @@
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
+
+  @media (max-width: 768px) {
+    .method-grid,
+    .panorama-grid,
+    .reading-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -202,7 +301,7 @@
     <span class="line-2">FASCISME</span>
   </h1>
   <p class="hero-subtitle">
-    Comment les géants de la technologie convergent avec des idéologies autoritaires pour remodeler le pouvoir, éroder les démocraties et construire un nouvel ordre mondial.
+    Une enquête visuelle sur la manière dont des acteurs de la tech, des doctrines anti-démocratiques et des infrastructures numériques de pouvoir commencent à se rejoindre, se renforcer et se légitimer mutuellement.
   </p>
   <div class="hero-cta-group">
     <a href="pages/origines.html" class="btn btn-primary">Explorer l'histoire</a>
@@ -253,13 +352,94 @@
 <section aria-label="Définitions clés">
   <div class="hero-definition fade-in">
     <div class="definition-box">
-      <h3>Définition</h3>
-      <p>Le technofascisme désigne la <strong>convergence d'un libertarianisme autoritaire avec des pratiques et imaginaires fascistes</strong>, dans laquelle les outils technologiques modernes deviennent le vecteur d'un coup d'État graduel contre les institutions démocratiques.</p>
-      <p style="margin-top:1rem; font-size: var(--text-xs); color: var(--color-text-faint); font-family: var(--font-mono);">— Tesquet & Hadjadji, Divergences, 2025</p>
+      <h3>Définition de travail</h3>
+      <p>Ici, le terme <strong>technofascisme</strong> n'est pas utilisé comme une étiquette automatique. Il sert à décrire une <strong>configuration politique émergente</strong>: quand des élites technologiques concentrent des infrastructures stratégiques, s'appuient sur des doctrines anti-égalitaires et trouvent dans la technologie un moyen d'étendre un pouvoir de type oligarchique.</p>
+      <p style="margin-top:1rem; font-size: var(--text-xs); color: var(--color-text-faint); font-family: var(--font-mono);">Le projet s'appuie sur un faisceau d'auteurs critiques, de sources primaires, d'analyses académiques et d'enquêtes journalistiques.</p>
     </div>
     <div class="definition-box cyan-box">
-      <h3>Contexte immédiat</h3>
-      <p>Depuis 2025, des <strong>oligarques de la tech — Musk, Thiel, Andreessen</strong> — ont investi massivement dans l'administration Trump, obtenu un accès sans précédent aux données fédérales, et déploient des outils de surveillance à une échelle jamais vue dans une démocratie libérale.</p>
+      <h3>Ce que la cartographie documente</h3>
+      <p>Le projet ne dit pas que tous les acteurs étudiés seraient identiques, ni qu'ils se revendiqueraient explicitement du fascisme. Il montre plutôt des <strong>continuités</strong>: financements politiques, réseaux d'admiration mutuelle, capture institutionnelle, privatisation du débat public, déploiement de dispositifs de surveillance et affinités avec des corpus intellectuels anti-démocratiques.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section aria-labelledby="method-heading">
+  <div class="home-method">
+    <div class="section-header fade-in" style="margin-bottom:var(--space-10)">
+      <span class="section-eyebrow">Méthode de lecture</span>
+      <h2 id="method-heading" class="section-title">Ce que montre cette enquête</h2>
+      <p class="section-lead">Pour être solide, une cartographie comme celle-ci doit distinguer les faits observables, les convergences idéologiques et la part d'interprétation critique. Cette page sert de boussole avant d'entrer dans les chapitres.</p>
+    </div>
+    <div class="method-grid fade-in">
+      <div class="method-card">
+        <div class="card-label">Niveau 01</div>
+        <h3>Des faits documentés</h3>
+        <p>Contrats publics, dons politiques, prises de parole, investissements, partenariats sécuritaires, usages policiers ou militaires: le socle de la démonstration repose d'abord sur des éléments vérifiables.</p>
+      </div>
+      <div class="method-card">
+        <div class="card-label">Niveau 02</div>
+        <h3>Des circulations d'idées</h3>
+        <p>Le site suit comment des notions naguère marginales passent d'essais, blogs ou manifestes à l'écosystème VC, aux plateformes, puis parfois aux institutions publiques.</p>
+      </div>
+      <div class="method-card">
+        <div class="card-label">Niveau 03</div>
+        <h3>Une hypothèse politique</h3>
+        <p>Le mot technofascisme fonctionne ici comme une hypothèse critique: tester si la rencontre entre puissance technique, mépris du pluralisme et aspiration à un pouvoir dur constitue bien autre chose qu'une dérive isolée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANORAMA -->
+<section aria-labelledby="panorama-heading">
+  <div class="section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Vue d'ensemble</span>
+      <h2 id="panorama-heading" class="section-title">Quatre axes pour lire le phénomène</h2>
+      <p class="section-lead">Le sujet devient plus lisible si l'on sépare ce qui relève des personnes, des doctrines, des machines et des effets démocratiques. Le technofascisme apparaît précisément à leur intersection.</p>
+    </div>
+    <div class="panorama-grid fade-in">
+      <div class="panorama-card">
+        <div class="panorama-kicker">Axe 01</div>
+        <h3>Acteurs</h3>
+        <p>Des entrepreneurs, investisseurs, théoriciens et relais politiques qui ne sont plus seulement des figures économiques, mais des agents capables d'agir sur l'État, les infrastructures et la circulation de l'information.</p>
+        <ul>
+          <li>Du milliardaire au stratège institutionnel</li>
+          <li>Du réseau VC au réseau de gouvernement</li>
+          <li>Du charisme de plateforme à la capacité d'influence</li>
+        </ul>
+      </div>
+      <div class="panorama-card">
+        <div class="panorama-kicker">Axe 02</div>
+        <h3>Doctrines</h3>
+        <p>NRx, e/acc, libertarianisme autoritaire, transhumanisme hiérarchique ou Network State ne se confondent pas, mais convergent souvent dans leur détestation des limites démocratiques.</p>
+        <ul>
+          <li>La démocratie décrite comme obstacle</li>
+          <li>L'élite technique décrite comme solution</li>
+          <li>La crise pensée comme moment d'opportunité</li>
+        </ul>
+      </div>
+      <div class="panorama-card">
+        <div class="panorama-kicker">Axe 03</div>
+        <h3>Machines</h3>
+        <p>Le basculement ne se joue pas seulement dans les idées. Il se matérialise dans des plateformes, des systèmes de surveillance, des modèles d'IA, des bases de données massives et des architectures de commandement.</p>
+        <ul>
+          <li>Biométrie, profiling, ciblage</li>
+          <li>Privatisation d'outils régaliens</li>
+          <li>Décision automatisée et opacité technique</li>
+        </ul>
+      </div>
+      <div class="panorama-card">
+        <div class="panorama-kicker">Axe 04</div>
+        <h3>Effets</h3>
+        <p>Le résultat n'est pas simplement plus de technologie. C'est un déplacement du centre de gravité politique: moins de contre-pouvoirs, moins de publicité des décisions, plus de dépendance à des infrastructures privées.</p>
+        <ul>
+          <li>Capture d'État graduelle</li>
+          <li>Affaiblissement du pluralisme informationnel</li>
+          <li>Normalisation d'une souveraineté oligarchique</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -267,7 +447,11 @@
 <!-- STATS -->
 <section aria-labelledby="stats-heading">
   <div class="section">
-    <div id="stats-heading" class="sr-only">Chiffres clés</div>
+    <div class="section-header fade-in" style="margin-bottom:var(--space-10)">
+      <span class="section-eyebrow">Ordres de grandeur</span>
+      <h2 id="stats-heading" class="section-title">Quelques signaux matériels</h2>
+      <p class="section-lead">Ces chiffres ne suffisent pas à eux seuls à prouver une thèse politique. Ils montrent en revanche que le sujet engage déjà des montants, des accès institutionnels et des dispositifs d'échelle industrielle.</p>
+    </div>
     <div class="stats-grid fade-in">
       <div class="stat-card stat-red">
         <div class="stat-number" data-target="970.5" data-suffix="M$">0M$</div>
@@ -302,7 +486,7 @@
   <div class="hub-intro fade-in">
     <p class="section-eyebrow">Cartographie</p>
     <h2 id="chapters-heading">Explorer les dimensions</h2>
-    <p>Six entrées thématiques pour comprendre comment le technofascisme s'organise, se justifie et se déploie.</p>
+    <p>Chaque entrée répond à une question différente. Tu peux suivre l'ordre proposé ou choisir un angle d'entrée selon que tu veux comprendre l'histoire, les acteurs, les outils ou les effets.</p>
   </div>
 
   <div class="hub-section">
@@ -356,6 +540,49 @@
         <div class="hub-card-arrow" aria-hidden="true">Visualiser ↓</div>
       </a>
 
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section aria-labelledby="reading-heading">
+  <div class="section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Parcours conseillés</span>
+      <h2 id="reading-heading" class="section-title">Trois façons d'entrer dans le sujet</h2>
+      <p class="section-lead">Le projet peut se lire comme une généalogie intellectuelle, comme une cartographie de pouvoir ou comme une enquête sur l'affaiblissement des démocraties.</p>
+    </div>
+    <div class="reading-grid fade-in">
+      <a href="pages/origines.html" class="reading-card">
+        <div class="reading-kicker">Parcours 01</div>
+        <h3>Partir du temps long</h3>
+        <p>Pour replacer le phénomène dans une histoire des techniques, du fascisme et de la critique de la modernité politique.</p>
+        <ul>
+          <li><strong>Origines</strong> pour la généalogie</li>
+          <li><strong>Idéologies</strong> pour les doctrines</li>
+          <li><strong>Figures</strong> pour les relais contemporains</li>
+        </ul>
+      </a>
+      <a href="pages/infrastructure.html" class="reading-card">
+        <div class="reading-kicker">Parcours 02</div>
+        <h3>Partir des infrastructures</h3>
+        <p>Pour voir comment le pouvoir s'incarne dans des contrats, des plateformes, des architectures logicielles et des chaînes d'investissement.</p>
+        <ul>
+          <li><strong>Infrastructure</strong> pour les dispositifs</li>
+          <li><strong>Carte des réseaux</strong> pour les connexions</li>
+          <li><strong>Figures</strong> pour les opérateurs</li>
+        </ul>
+      </a>
+      <a href="pages/democraties.html" class="reading-card">
+        <div class="reading-kicker">Parcours 03</div>
+        <h3>Partir des conséquences</h3>
+        <p>Pour comprendre ce que ces recompositions changent déjà à l'État de droit, au pluralisme médiatique et à l'espace public.</p>
+        <ul>
+          <li><strong>Démocraties</strong> pour les effets</li>
+          <li><strong>Infrastructure</strong> pour les mécanismes</li>
+          <li><strong>Origines</strong> pour le recul historique</li>
+        </ul>
+      </a>
     </div>
   </div>
 </section>
