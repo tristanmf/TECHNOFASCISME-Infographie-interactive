@@ -224,9 +224,15 @@ body::before {
   overflow: hidden;
 }
 
+.page-hero > *:not(.hero-grid-bg):not(.hero-glow-red):not(.hero-glow-cyan) {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-grid-bg {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background-image:
     linear-gradient(rgba(200, 16, 46, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(200, 16, 46, 0.05) 1px, transparent 1px);
@@ -988,13 +994,13 @@ body::before {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  cursor: grab;
+  cursor: default;
 }
-
-.network-container:active { cursor: grabbing; }
 
 .network-container canvas {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* ── Ideology pills grid ─────────────────────────────────────── */

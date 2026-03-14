@@ -155,6 +155,53 @@
     color: var(--color-text);
   }
 
+  .network-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.9fr);
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  .network-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-height: 500px;
+  }
+
+  .network-detail p {
+    max-width: 100%;
+  }
+
+  .network-links {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .network-link-item {
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-2);
+  }
+
+  .network-link-item strong {
+    display: block;
+    margin-bottom: var(--space-1);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+  }
+
+  .network-link-item span {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    line-height: 1.5;
+  }
+
+  .network-cta {
+    margin-top: auto;
+  }
+
   .hub-intro {
     max-width: var(--content-default);
     margin: 0 auto;
@@ -252,7 +299,8 @@
   @media (max-width: 768px) {
     .method-grid,
     .panorama-grid,
-    .reading-grid { grid-template-columns: 1fr; }
+    .reading-grid,
+    .network-layout { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -316,37 +364,6 @@
     </svg>
   </div>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrapper" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Surveillance de masse</span>
-    <span class="marquee-item">Palantir · ICE · DOGE</span>
-    <span class="marquee-item">Dark Enlightenment</span>
-    <span class="marquee-item">Algorithmes de radicalisation</span>
-    <span class="marquee-item">IA militaire · Anduril</span>
-    <span class="marquee-item">Capture d'État</span>
-    <span class="marquee-item">Post-humanisme</span>
-    <span class="marquee-item">Curtis Yarvin · NRx</span>
-    <span class="marquee-item">Peter Thiel · Fondateurs Fund</span>
-    <span class="marquee-item">Accélérationnisme e/acc</span>
-    <span class="marquee-item">Network State</span>
-    <span class="marquee-item">Libertarianisme autoritaire</span>
-    <!-- Duplicate for seamless loop -->
-    <span class="marquee-item">Surveillance de masse</span>
-    <span class="marquee-item">Palantir · ICE · DOGE</span>
-    <span class="marquee-item">Dark Enlightenment</span>
-    <span class="marquee-item">Algorithmes de radicalisation</span>
-    <span class="marquee-item">IA militaire · Anduril</span>
-    <span class="marquee-item">Capture d'État</span>
-    <span class="marquee-item">Post-humanisme</span>
-    <span class="marquee-item">Curtis Yarvin · NRx</span>
-    <span class="marquee-item">Peter Thiel · Fondateurs Fund</span>
-    <span class="marquee-item">Accélérationnisme e/acc</span>
-    <span class="marquee-item">Network State</span>
-    <span class="marquee-item">Libertarianisme autoritaire</span>
-  </div>
-</div>
 
 <!-- DEFINITION -->
 <section aria-label="Définitions clés">
@@ -536,7 +553,7 @@
         <span class="hub-card-number" aria-hidden="true">06</span>
         <div class="hub-card-emoji" aria-hidden="true">🕸️</div>
         <h3>Carte des réseaux</h3>
-        <p>Visualisation interactive des connexions entre figures, entreprises, idéologies et institutions. Glissez les nœuds pour explorer.</p>
+        <p>Carte de relations entre figures, entreprises, idéologies et institutions. Clique sur un acteur pour voir ce que le relie au reste du système.</p>
         <div class="hub-card-arrow" aria-hidden="true">Visualiser ↓</div>
       </a>
 
@@ -593,10 +610,23 @@
     <div class="section-header fade-in" style="text-align:center">
       <span class="section-eyebrow">Visualisation interactive</span>
       <h2 id="network-heading" class="section-title" style="margin:0 auto">Réseau de pouvoir</h2>
-      <p class="section-lead" style="margin:var(--space-4) auto 0">Connexions entre les acteurs clés du technofascisme. <strong style="color:var(--color-text)">Glissez les nœuds</strong> pour explorer les liens.</p>
+      <p class="section-lead" style="margin:var(--space-4) auto 0">Une carte statique, mais lisible: clique sur un acteur pour mettre en évidence ses connexions et comprendre ce qu'elles signifient politiquement.</p>
     </div>
-    <div class="network-container fade-in" style="margin-top:var(--space-8)">
-      <canvas id="network-canvas" role="img" aria-label="Réseau de connexions entre acteurs du technofascisme"></canvas>
+    <div class="network-layout fade-in" style="margin-top:var(--space-8)">
+      <div class="network-container">
+        <canvas id="network-canvas" role="img" aria-label="Réseau de connexions entre acteurs du technofascisme"></canvas>
+      </div>
+      <aside class="card network-detail" aria-live="polite">
+        <div>
+          <div class="card-label" id="network-detail-kicker">Lecture guidée</div>
+          <h3 id="network-detail-title">Peter Thiel</h3>
+          <p id="network-detail-body">Sélectionne un nœud pour voir pourquoi il compte, quels acteurs lui sont reliés et par quel type de relation.</p>
+        </div>
+        <div class="network-links" id="network-detail-links"></div>
+        <div class="network-cta">
+          <a id="network-detail-link" href="pages/figures.html" class="btn btn-secondary">Ouvrir la page liée</a>
+        </div>
+      </aside>
     </div>
     <div class="network-legend fade-in">
       <div class="legend-item">
@@ -624,7 +654,7 @@
   <div class="section">
     <div class="quote-block fade-in">
       <blockquote>
-        "Il n'y a pas dans notre avenir une prise de pouvoir terroriste, mais il peut y avoir un populisme télévisuel ou Internet, dans lequel la réponse émotionnelle d'un groupe de citoyens sélectionné peut être présentée et acceptée comme la Voix du Peuple."
+        "Nous verrons peut-être émerger un populisme télévisuel ou Internet, où la réaction émotionnelle d'un groupe choisi de citoyens sera présentée et acceptée comme la Voix du Peuple."
       </blockquote>
       <cite>Umberto Eco, Ur-Fascism (Fascisme Éternel), 1995 — The New York Review of Books</cite>
     </div>

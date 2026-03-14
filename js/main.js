@@ -106,249 +106,201 @@ function initNetworkCanvas(canvasId) {
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  let W, H, animId;
-  let isDragging = false;
-  let dragNode = null;
-  let dragOffX = 0, dragOffY = 0;
+  let W;
+  let H;
+  let hoveredId = null;
+  let selectedId = 'thiel';
+  const detailKicker = document.getElementById('network-detail-kicker');
+  const detailTitle = document.getElementById('network-detail-title');
+  const detailBody = document.getElementById('network-detail-body');
+  const detailLinks = document.getElementById('network-detail-links');
+  const detailLink = document.getElementById('network-detail-link');
 
-  // Nodes
   const nodes = [
-    { id: 'musk',    label: 'Elon Musk',     x: 0, y: 0, r: 28, color: '#c8102e', group: 'figure' },
-    { id: 'thiel',   label: 'Peter Thiel',   x: 0, y: 0, r: 26, color: '#c8102e', group: 'figure' },
-    { id: 'andreessen', label: 'Andreessen', x: 0, y: 0, r: 22, color: '#c8102e', group: 'figure' },
-    { id: 'yarvin',  label: 'C. Yarvin',     x: 0, y: 0, r: 20, color: '#9d174d', group: 'figure' },
-    { id: 'vance',   label: 'JD Vance',      x: 0, y: 0, r: 20, color: '#7e22ce', group: 'figure' },
-    { id: 'palantir',label: 'Palantir',      x: 0, y: 0, r: 24, color: '#00d4ff', group: 'company' },
-    { id: 'x',       label: 'X / Twitter',   x: 0, y: 0, r: 22, color: '#00d4ff', group: 'company' },
-    { id: 'doge',    label: 'DOGE',          x: 0, y: 0, r: 22, color: '#f59e0b', group: 'institution' },
-    { id: 'anduril', label: 'Anduril',       x: 0, y: 0, r: 18, color: '#00d4ff', group: 'company' },
-    { id: 'nrx',     label: 'NRx / Dark\nEnlightenment', x: 0, y: 0, r: 20, color: '#7c3aed', group: 'ideology' },
-    { id: 'cia',     label: 'CIA / NSA',     x: 0, y: 0, r: 18, color: '#374151', group: 'institution' },
-    { id: 'pentagon',label: 'Pentagon',      x: 0, y: 0, r: 18, color: '#374151', group: 'institution' },
-    { id: 'xai',     label: 'xAI / Grok',   x: 0, y: 0, r: 18, color: '#c8102e', group: 'company' },
-    { id: 'eacc',    label: 'e/acc',         x: 0, y: 0, r: 16, color: '#0891b2', group: 'ideology' },
-    { id: 'trump',   label: 'Admin Trump',   x: 0, y: 0, r: 22, color: '#b45309', group: 'institution' },
-    { id: 'clearview', label: 'Clearview AI', x: 0, y: 0, r: 16, color: '#00d4ff', group: 'company' },
+    { id: 'musk', label: 'Elon Musk', xPct: 0.25, yPct: 0.22, r: 28, color: '#c8102e', group: 'figure', kicker: 'Figure / Plateformes', body: "Point de jonction entre réseau social, IA, contrats publics et influence électorale.", href: 'pages/figures.html' },
+    { id: 'thiel', label: 'Peter Thiel', xPct: 0.49, yPct: 0.18, r: 26, color: '#c8102e', group: 'figure', kicker: 'Figure / Capital-risque', body: "Nœud majeur entre capital-risque, surveillance, financement politique et diffusion d'idées néo-réactionnaires.", href: 'pages/figures.html' },
+    { id: 'andreessen', label: 'Andreessen', xPct: 0.72, yPct: 0.24, r: 22, color: '#c8102e', group: 'figure', kicker: 'Figure / Doctrine', body: "Voix centrale d'un techno-optimisme offensif, opposé aux freins démocratiques et réglementaires.", href: 'pages/figures.html' },
+    { id: 'yarvin', label: 'C. Yarvin', xPct: 0.58, yPct: 0.42, r: 20, color: '#9d174d', group: 'figure', kicker: 'Figure / Théorie', body: "Source doctrinale majeure pour penser l'État comme entreprise et la démocratie comme obstacle.", href: 'pages/figures.html' },
+    { id: 'vance', label: 'JD Vance', xPct: 0.39, yPct: 0.44, r: 20, color: '#7e22ce', group: 'figure', kicker: 'Relais institutionnel', body: "Lien entre des idées issues de la droite tech et leur traduction dans l'appareil politique américain.", href: 'pages/figures.html' },
+    { id: 'palantir', label: 'Palantir', xPct: 0.5, yPct: 0.66, r: 24, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Données', body: "Cas d'étude central où des infrastructures privées deviennent des instruments de sécurité et de gouvernement.", href: 'pages/infrastructure.html' },
+    { id: 'x', label: 'X / Twitter', xPct: 0.14, yPct: 0.44, r: 22, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Plateforme', body: "Espace d'amplification politique, de hiérarchisation algorithmique et de conflictualité informationnelle.", href: 'pages/infrastructure.html' },
+    { id: 'doge', label: 'DOGE', xPct: 0.24, yPct: 0.7, r: 22, color: '#f59e0b', group: 'institution', kicker: 'Institution / Brouillage', body: "Structure emblématique du brouillage entre expertise privée, accès aux systèmes fédéraux et démantèlement administratif.", href: 'pages/infrastructure.html' },
+    { id: 'anduril', label: 'Anduril', xPct: 0.72, yPct: 0.63, r: 18, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Défense', body: "Incarnation de la privatisation de capacités militaires, sécuritaires et frontalières.", href: 'pages/infrastructure.html' },
+    { id: 'nrx', label: 'NRx / Dark\nEnlightenment', xPct: 0.77, yPct: 0.47, r: 20, color: '#7c3aed', group: 'ideology', kicker: 'Idéologie', body: "Corpus doctrinal anti-démocratique structurant pour une partie de l'écosystème étudié.", href: 'pages/ideologies.html' },
+    { id: 'cia', label: 'CIA / NSA', xPct: 0.39, yPct: 0.84, r: 18, color: '#374151', group: 'institution', kicker: 'Institution / Renseignement', body: "Représente ici l'arrimage ancien entre certaines entreprises tech et les appareils de sécurité nationale.", href: 'pages/infrastructure.html' },
+    { id: 'pentagon', label: 'Pentagon', xPct: 0.64, yPct: 0.84, r: 18, color: '#374151', group: 'institution', kicker: 'Institution / Défense', body: "Lieu d'agrégation entre innovations privées, contrats militaires et souveraineté technique.", href: 'pages/infrastructure.html' },
+    { id: 'xai', label: 'xAI / Grok', xPct: 0.1, yPct: 0.63, r: 18, color: '#c8102e', group: 'company', kicker: 'Entreprise / IA', body: "Montre l'imbrication entre plateformes, IA générative et personnalisation idéologique de l'écosystème Musk.", href: 'pages/infrastructure.html' },
+    { id: 'eacc', label: 'e/acc', xPct: 0.9, yPct: 0.28, r: 16, color: '#0891b2', group: 'ideology', kicker: 'Idéologie', body: "Version militante d'une accélération technologique assumée, hostile au principe de précaution.", href: 'pages/ideologies.html' },
+    { id: 'trump', label: 'Admin Trump', xPct: 0.1, yPct: 0.84, r: 22, color: '#b45309', group: 'institution', kicker: 'Institution / Exécutif', body: "Pôle de traduction politique et administrative de nombreuses proximités étudiées ici.", href: 'pages/democraties.html' },
+    { id: 'clearview', label: 'Clearview AI', xPct: 0.58, yPct: 0.95, r: 16, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Biométrie', body: "Exemple d'une entreprise qui pousse à l'extrême la logique d'identification biométrique à grande échelle.", href: 'pages/infrastructure.html' },
   ];
 
   const edges = [
-    { from: 'musk', to: 'x', weight: 3 },
-    { from: 'musk', to: 'doge', weight: 3 },
-    { from: 'musk', to: 'xai', weight: 2 },
-    { from: 'musk', to: 'trump', weight: 3 },
-    { from: 'musk', to: 'eacc', weight: 2 },
-    { from: 'musk', to: 'nrx', weight: 1 },
-    { from: 'thiel', to: 'palantir', weight: 3 },
-    { from: 'thiel', to: 'vance', weight: 3 },
-    { from: 'thiel', to: 'yarvin', weight: 2 },
-    { from: 'thiel', to: 'nrx', weight: 2 },
-    { from: 'thiel', to: 'anduril', weight: 1 },
-    { from: 'palantir', to: 'cia', weight: 2 },
-    { from: 'palantir', to: 'pentagon', weight: 2 },
-    { from: 'palantir', to: 'doge', weight: 2 },
-    { from: 'andreessen', to: 'nrx', weight: 1 },
-    { from: 'andreessen', to: 'eacc', weight: 2 },
-    { from: 'andreessen', to: 'yarvin', weight: 1 },
-    { from: 'yarvin', to: 'nrx', weight: 3 },
-    { from: 'vance', to: 'trump', weight: 3 },
-    { from: 'vance', to: 'nrx', weight: 2 },
-    { from: 'anduril', to: 'pentagon', weight: 2 },
-    { from: 'trump', to: 'doge', weight: 2 },
-    { from: 'clearview', to: 'cia', weight: 1 },
-    { from: 'xai', to: 'eacc', weight: 1 },
+    { from: 'musk', to: 'x', weight: 3, label: "contrôle de plateforme et hiérarchisation de l'espace public" },
+    { from: 'musk', to: 'doge', weight: 3, label: "intervention directe dans l'appareil d'État" },
+    { from: 'musk', to: 'xai', weight: 2, label: "chaîne intégrée entre plateforme et IA" },
+    { from: 'musk', to: 'trump', weight: 3, label: "alliance politique et influence sur l'exécutif" },
+    { from: 'musk', to: 'eacc', weight: 2, label: "affinité avec l'imaginaire accélérationniste" },
+    { from: 'musk', to: 'nrx', weight: 1, label: "porosité avec des références anti-démocratiques" },
+    { from: 'thiel', to: 'palantir', weight: 3, label: "ancrage industriel dans la surveillance et la donnée" },
+    { from: 'thiel', to: 'vance', weight: 3, label: "financement et mise à l'agenda politique" },
+    { from: 'thiel', to: 'yarvin', weight: 2, label: "soutien à un répertoire doctrinal commun" },
+    { from: 'thiel', to: 'nrx', weight: 2, label: "circulation directe avec la néo-réaction" },
+    { from: 'thiel', to: 'anduril', weight: 1, label: "proximité avec l'écosystème defense-tech" },
+    { from: 'palantir', to: 'cia', weight: 2, label: "histoire commune avec le renseignement américain" },
+    { from: 'palantir', to: 'pentagon', weight: 2, label: "intégration dans la défense et la sécurité" },
+    { from: 'palantir', to: 'doge', weight: 2, label: "continuité entre outils de donnée et fonctions d'État" },
+    { from: 'andreessen', to: 'nrx', weight: 1, label: "tolérance intellectuelle envers le répertoire néo-réactionnaire" },
+    { from: 'andreessen', to: 'eacc', weight: 2, label: "légitimation publique de l'accélération sans frein" },
+    { from: 'andreessen', to: 'yarvin', weight: 1, label: "proximité avec certains milieux doctrinaux" },
+    { from: 'yarvin', to: 'nrx', weight: 3, label: "source théorique principale du courant" },
+    { from: 'vance', to: 'trump', weight: 3, label: "traduction politique et gouvernementale" },
+    { from: 'vance', to: 'nrx', weight: 2, label: "référence revendiquée ou reconnue à certaines idées" },
+    { from: 'anduril', to: 'pentagon', weight: 2, label: "externalisation de capacités militaires à des start-ups" },
+    { from: 'trump', to: 'doge', weight: 2, label: "couverture institutionnelle de la réorganisation administrative" },
+    { from: 'clearview', to: 'cia', weight: 1, label: "convergence entre biométrie privée et logiques sécuritaires" },
+    { from: 'xai', to: 'eacc', weight: 1, label: "proximité avec un récit d'accélération IA" },
   ];
 
-  // Position nodes in a force-directed-ish layout
-  function setInitialPositions() {
+  function layoutNodes() {
     W = canvas.width = canvas.parentElement.clientWidth;
-    H = canvas.height = canvas.parentElement.clientHeight || 480;
-    const cx = W / 2, cy = H / 2;
-    const groupCenters = {
-      figure:      { x: cx,       y: cy },
-      company:     { x: cx + 180, y: cy - 80 },
-      institution: { x: cx - 150, y: cy + 120 },
-      ideology:    { x: cx + 60,  y: cy + 160 },
-    };
-    nodes.forEach((n, i) => {
-      if (n.x === 0 && n.y === 0) {
-        const gc = groupCenters[n.group] || { x: cx, y: cy };
-        const angle = (i / nodes.length) * Math.PI * 2;
-        const radius = 80 + Math.random() * 60;
-        n.x = gc.x + Math.cos(angle) * radius;
-        n.y = gc.y + Math.sin(angle) * radius;
-      }
+    H = canvas.height = canvas.parentElement.clientHeight || 500;
+    nodes.forEach((node) => {
+      node.x = node.xPct * W;
+      node.y = node.yPct * H;
     });
   }
 
-  // Physics
-  const vx = nodes.map(() => 0);
-  const vy = nodes.map(() => 0);
-  let tick = 0;
+  function getNodeById(id) {
+    return nodes.find((node) => node.id === id);
+  }
 
-  function applyForces() {
-    const k = 60; // repulsion
-    nodes.forEach((a, i) => {
-      if (dragNode === a) return;
-      let fx = 0, fy = 0;
-      // Repulsion
-      nodes.forEach((b, j) => {
-        if (i === j) return;
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-        const force = k * k / dist;
-        fx += dx / dist * force;
-        fy += dy / dist * force;
-      });
-      // Attraction along edges
-      edges.forEach(e => {
-        let other = null;
-        if (e.from === a.id) other = nodes.find(n => n.id === e.to);
-        if (e.to === a.id) other = nodes.find(n => n.id === e.from);
-        if (!other) return;
-        const dx = a.x - other.x, dy = a.y - other.y;
-        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-        const idealDist = 150 / e.weight;
-        const force = (dist - idealDist) * 0.008;
-        fx -= dx * force;
-        fy -= dy * force;
-      });
-      // Center pull
-      fx += (W/2 - a.x) * 0.002;
-      fy += (H/2 - a.y) * 0.002;
+  function getRelatedEdges(nodeId) {
+    return edges.filter((edge) => edge.from === nodeId || edge.to === nodeId);
+  }
 
-      vx[i] = (vx[i] + fx * 0.1) * 0.85;
-      vy[i] = (vy[i] + fy * 0.1) * 0.85;
-      a.x += vx[i];
-      a.y += vy[i];
-      // Bounds
-      a.x = Math.max(a.r + 40, Math.min(W - a.r - 40, a.x));
-      a.y = Math.max(a.r + 40, Math.min(H - a.r - 40, a.y));
+  function getNodeAt(x, y) {
+    return nodes.find((node) => {
+      const dx = node.x - x;
+      const dy = node.y - y;
+      return Math.sqrt(dx * dx + dy * dy) < node.r + 8;
     });
+  }
+
+  function updateDetail(nodeId) {
+    const node = getNodeById(nodeId);
+    if (!node || !detailTitle || !detailBody || !detailLinks || !detailLink || !detailKicker) return;
+    const relatedEdges = getRelatedEdges(nodeId);
+    detailKicker.textContent = node.kicker;
+    detailTitle.textContent = node.label.replace('\n', ' ');
+    detailBody.textContent = node.body;
+    detailLink.setAttribute('href', node.href);
+    detailLink.textContent = `Ouvrir ${node.group === 'ideology' ? 'la page des idées' : 'la page liée'}`;
+    detailLinks.innerHTML = relatedEdges
+      .sort((a, b) => b.weight - a.weight)
+      .map((edge) => {
+        const otherId = edge.from === nodeId ? edge.to : edge.from;
+        const other = getNodeById(otherId);
+        return `<div class="network-link-item"><strong>${other.label.replace('\n', ' ')}</strong><span>${edge.label}</span></div>`;
+      })
+      .join('');
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
+    const selectedEdges = selectedId ? getRelatedEdges(selectedId) : [];
+    const selectedEdgeKeys = new Set(selectedEdges.map((edge) => `${edge.from}:${edge.to}`));
+    const selectedNeighbors = new Set(
+      selectedEdges.flatMap((edge) => [edge.from, edge.to])
+    );
 
-    // Edges
-    edges.forEach(e => {
-      const from = nodes.find(n => n.id === e.from);
-      const to   = nodes.find(n => n.id === e.to);
-      if (!from || !to) return;
+    edges.forEach((edge) => {
+      const from = getNodeById(edge.from);
+      const to = getNodeById(edge.to);
+      const isActive = selectedEdgeKeys.has(`${edge.from}:${edge.to}`);
       ctx.beginPath();
       ctx.moveTo(from.x, from.y);
       ctx.lineTo(to.x, to.y);
-      ctx.strokeStyle = `rgba(58, 58, 85, ${0.3 + e.weight * 0.15})`;
-      ctx.lineWidth = e.weight;
+      ctx.strokeStyle = isActive ? 'rgba(0, 212, 255, 0.9)' : 'rgba(58, 58, 85, 0.35)';
+      ctx.lineWidth = isActive ? edge.weight + 1 : edge.weight;
       ctx.stroke();
-      // Pulse on edge
-      if (tick % 120 < 40) {
-        const t = (tick % 120) / 40;
-        const px = from.x + (to.x - from.x) * t;
-        const py = from.y + (to.y - from.y) * t;
-        ctx.beginPath();
-        ctx.arc(px, py, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
-        ctx.fill();
-      }
     });
 
-    // Nodes
-    nodes.forEach(n => {
-      // Glow
-      const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 2.5);
-      grad.addColorStop(0, n.color + '40');
-      grad.addColorStop(1, n.color + '00');
+    nodes.forEach((node) => {
+      const isSelected = node.id === selectedId;
+      const isNeighbor = selectedNeighbors.has(node.id);
+      const isHovered = node.id === hoveredId;
+      const emphasis = isSelected ? 1 : isNeighbor || !selectedId ? 0.85 : 0.35;
+      const glowRadius = node.r * (isSelected ? 3.4 : 2.4);
+      const grad = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowRadius);
+      grad.addColorStop(0, `${node.color}${isSelected ? '66' : '33'}`);
+      grad.addColorStop(1, `${node.color}00`);
       ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r * 2.5, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
       ctx.fillStyle = grad;
+      ctx.globalAlpha = emphasis;
       ctx.fill();
 
-      // Node circle
       ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = n.color + '22';
-      ctx.strokeStyle = n.color;
-      ctx.lineWidth = 1.5;
+      ctx.arc(node.x, node.y, node.r + (isSelected ? 2 : 0), 0, Math.PI * 2);
+      ctx.fillStyle = `${node.color}22`;
+      ctx.strokeStyle = isSelected ? '#f4f0ff' : node.color;
+      ctx.lineWidth = isSelected ? 2.5 : 1.5;
       ctx.fill();
       ctx.stroke();
 
-      // Label
-      const lines = n.label.split('\n');
+      const lines = node.label.split('\n');
       ctx.fillStyle = '#e8e6f0';
-      ctx.font = `600 ${Math.max(9, n.r * 0.45)}px 'JetBrains Mono', monospace`;
+      ctx.font = `600 ${Math.max(9, node.r * 0.45)}px 'JetBrains Mono', monospace`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
+      ctx.globalAlpha = isHovered || isSelected || isNeighbor || !selectedId ? 1 : 0.55;
       if (lines.length === 1) {
-        ctx.fillText(n.label, n.x, n.y);
+        ctx.fillText(node.label, node.x, node.y);
       } else {
-        ctx.fillText(lines[0], n.x, n.y - 7);
-        ctx.fillText(lines[1], n.x, n.y + 7);
+        ctx.fillText(lines[0], node.x, node.y - 7);
+        ctx.fillText(lines[1], node.x, node.y + 7);
       }
-    });
-
-    tick++;
-  }
-
-  function loop() {
-    if (tick < 200) applyForces(); // settle, then stabilize
-    draw();
-    animId = requestAnimationFrame(loop);
-  }
-
-  // Drag
-  function getNode(x, y) {
-    return nodes.find(n => {
-      const dx = n.x - x, dy = n.y - y;
-      return Math.sqrt(dx*dx + dy*dy) < n.r + 6;
+      ctx.globalAlpha = 1;
     });
   }
 
-  function getXY(e) {
+  function getPointerXY(e) {
     const rect = canvas.getBoundingClientRect();
-    const src = e.touches ? e.touches[0] : e;
-    return { x: src.clientX - rect.left, y: src.clientY - rect.top };
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
   }
 
-  canvas.addEventListener('mousedown', e => {
-    const { x, y } = getXY(e);
-    dragNode = getNode(x, y);
-    if (dragNode) { dragOffX = x - dragNode.x; dragOffY = y - dragNode.y; }
+  canvas.addEventListener('mousemove', (e) => {
+    const { x, y } = getPointerXY(e);
+    const target = getNodeAt(x, y);
+    hoveredId = target ? target.id : null;
+    canvas.style.cursor = target ? 'pointer' : 'default';
+    draw();
   });
 
-  canvas.addEventListener('mousemove', e => {
-    const { x, y } = getXY(e);
-    if (dragNode) { dragNode.x = x - dragOffX; dragNode.y = y - dragOffY; }
-    canvas.style.cursor = getNode(x, y) ? 'pointer' : 'grab';
+  canvas.addEventListener('mouseleave', () => {
+    hoveredId = null;
+    canvas.style.cursor = 'default';
+    draw();
   });
 
-  canvas.addEventListener('mouseup', () => { dragNode = null; });
-  canvas.addEventListener('mouseleave', () => { dragNode = null; });
+  canvas.addEventListener('click', (e) => {
+    const { x, y } = getPointerXY(e);
+    const target = getNodeAt(x, y);
+    if (!target) return;
+    selectedId = target.id;
+    updateDetail(selectedId);
+    draw();
+  });
 
-  canvas.addEventListener('touchstart', e => {
-    const { x, y } = getXY(e);
-    dragNode = getNode(x, y);
-    if (dragNode) { dragOffX = x - dragNode.x; dragOffY = y - dragNode.y; }
-    e.preventDefault();
-  }, { passive: false });
-
-  canvas.addEventListener('touchmove', e => {
-    const { x, y } = getXY(e);
-    if (dragNode) { dragNode.x = x - dragOffX; dragNode.y = y - dragOffY; }
-    e.preventDefault();
-  }, { passive: false });
-
-  canvas.addEventListener('touchend', () => { dragNode = null; });
-
-  // Resize
   window.addEventListener('resize', () => {
-    cancelAnimationFrame(animId);
-    setInitialPositions();
-    tick = 0;
-    loop();
+    layoutNodes();
+    draw();
   });
 
-  setInitialPositions();
-  loop();
+  layoutNodes();
+  updateDetail(selectedId);
+  draw();
 }
 
 // ── Init network on hub page if present ────────────────────────
