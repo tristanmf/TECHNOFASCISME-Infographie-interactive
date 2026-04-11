@@ -317,12 +317,152 @@ function initNetworkCanvas(canvasId) {
   draw();
 }
 
+// ── Glossary data ───────────────────────────────────────────────
+const GLOSSARY = {
+  nrx: {
+    label: 'NRx — Néo-Réactionnaire',
+    def: 'Courant fondé par Curtis Yarvin (alias Mencius Moldbug) : la démocratie libérale comme échec systémique, l\'État géré comme une entreprise avec un PDG souverain. Source doctrinale centrale de l\'écosystème étudié ici.'
+  },
+  eacc: {
+    label: 'e/acc — Effective Accelerationism',
+    def: 'Doctrine prônant l\'accélération technologique sans entraves réglementaires. Popularisée par Marc Andreessen en 2023. Le principe de précaution y est présenté comme un "ennemi de l\'humanité".'
+  },
+  doge: {
+    label: 'DOGE — Dept. of Government Efficiency',
+    def: 'Structure para-gouvernementale dirigée par Musk depuis janvier 2025. Accès controversé aux systèmes fédéraux, licenciements massifs de fonctionnaires, logique de démantèlement administratif sans base légale claire.'
+  },
+  cathedral: {
+    label: 'La Cathédrale',
+    def: 'Concept de Yarvin désignant l\'alliance informelle entre grands médias, universités et bureaucratie — ce qu\'il présente comme le "vrai pouvoir" dissimulé derrière la façade démocratique. Équivalent de "deep state" pour les milieux NRx.'
+  },
+  dark_enlightenment: {
+    label: 'Dark Enlightenment',
+    def: 'Terme de Nick Land pour le corpus néo-réactionnaire : refus de l\'égalitarisme, hiérarchies "naturelles", rejet de la démocratie comme décélérateur de l\'évolution. A influencé e/acc et certains cercles d\'extrême droite violente.'
+  },
+  network_state: {
+    label: 'Network State',
+    def: 'Concept de Balaji Srinivasan (2022) : rassembler en ligne des individus partageant des valeurs, puis acquérir des territoires physiques pour créer de nouveaux États souverains, hors démocraties existantes.'
+  },
+  rage: {
+    label: 'RAGE — Retire All Government Employees',
+    def: 'Plan de démantèlement intégral de la fonction publique théorisé par Yarvin. Repris quasi à l\'identique par le DOGE de Musk dès 2025 : licenciements massifs, mise en congé d\'experts indépendants.'
+  },
+  longtermisme: {
+    label: 'Longtermisme',
+    def: 'Variante de l\'Effective Altruism : les intérêts des générations futures (potentiellement en nombre infini) priment sur les souffrances présentes. Peut justifier des décisions radicales "pour le bien futur" au détriment des droits actuels.'
+  },
+  neocameralisme: {
+    label: 'Néocaméralisme',
+    def: 'Doctrine de Yarvin : l\'État géré comme une entreprise privée. Les citoyens deviennent actionnaires, le dirigeant un PDG à pouvoirs absolus. Les contre-pouvoirs traditionnels sont remplacés par la "discipline du marché".'
+  },
+  palantir: {
+    label: 'Palantir Technologies',
+    def: 'Entreprise de données fondée en 2002 par Peter Thiel avec la CIA (via In-Q-Tel). Contrats avec NSA, FBI, ICE, Pentagon. 970M$ de contrats fédéraux en 2025, +1700% en bourse en 3 ans.'
+  },
+  clearview: {
+    label: 'Clearview AI',
+    def: 'Start-up de reconnaissance faciale ayant constitué une base de milliards de visages scrappés sur internet sans consentement. Plus de 100M€ d\'amendes RGPD en Europe. Utilisée par des forces de l\'ordre dans plusieurs pays.'
+  },
+  anduril: {
+    label: 'Anduril Industries',
+    def: 'Start-up de défense fondée par Palmer Luckey (ex-Oculus), financée par Peter Thiel. Drones autonomes, surveillance frontalière par IA, systèmes d\'armes. Exemple de privatisation de capacités militaires régaliennes.'
+  },
+  ea: {
+    label: 'EA — Effective Altruism',
+    def: 'Mouvement philosophique né à Oxford cherchant à "faire le bien de manière optimale" via des métriques quantitatives. Dans ses formes longtermistes, peut justifier des sacrifices présents pour des bénéfices futurs très incertains.'
+  }
+};
+
+// ── Glossary popover engine ─────────────────────────────────────
+function initGlossary() {
+  const terms = document.querySelectorAll('.gl-term[data-term]');
+  if (!terms.length) return;
+
+  const popover = document.createElement('div');
+  popover.id = 'gl-popover';
+  popover.setAttribute('role', 'tooltip');
+  popover.setAttribute('aria-live', 'polite');
+  document.body.appendChild(popover);
+
+  let activeEl = null;
+  let hideTimer = null;
+
+  function positionPopover(el) {
+    const rect = el.getBoundingClientRect();
+    const popW = 300;
+    const viewW = window.innerWidth;
+    let left = rect.left + rect.width / 2 - popW / 2;
+    if (left < 10) left = 10;
+    if (left + popW > viewW - 10) left = viewW - popW - 10;
+    const top = rect.bottom + 10;
+    popover.style.left = left + 'px';
+    popover.style.top = top + 'px';
+  }
+
+  function showPopover(el) {
+    clearTimeout(hideTimer);
+    const entry = GLOSSARY[el.dataset.term];
+    if (!entry) return;
+    popover.innerHTML = `<div class="gl-label">${entry.label}</div><div class="gl-def">${entry.def}</div>`;
+    positionPopover(el);
+    popover.classList.add('visible');
+    activeEl = el;
+    el.setAttribute('aria-expanded', 'true');
+  }
+
+  function hidePopover() {
+    hideTimer = setTimeout(() => {
+      popover.classList.remove('visible');
+      if (activeEl) {
+        activeEl.setAttribute('aria-expanded', 'false');
+        activeEl = null;
+      }
+    }, 120);
+  }
+
+  terms.forEach(el => {
+    el.setAttribute('aria-expanded', 'false');
+    el.setAttribute('aria-haspopup', 'true');
+    el.addEventListener('mouseenter', () => showPopover(el));
+    el.addEventListener('mouseleave', hidePopover);
+    el.addEventListener('focus', () => showPopover(el));
+    el.addEventListener('blur', hidePopover);
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      activeEl === el && popover.classList.contains('visible')
+        ? hidePopover()
+        : showPopover(el);
+    });
+  });
+
+  // Keep popover open when hovering it
+  popover.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+  popover.addEventListener('mouseleave', hidePopover);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hidePopover();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.gl-term') && !e.target.closest('#gl-popover')) {
+      hidePopover();
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    if (activeEl && popover.classList.contains('visible')) {
+      positionPopover(activeEl);
+    }
+  }, { passive: true });
+}
+
 // ── Init network on hub page if present ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initNetworkCanvas('network-canvas');
   initScrollProgress();
   initBackToTop();
   initRiskBars();
+  initGlossary();
 });
 
 // ── Scroll progress bar ─────────────────────────────────────────

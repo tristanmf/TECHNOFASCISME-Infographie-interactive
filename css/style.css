@@ -1511,6 +1511,68 @@ hr.section-divider {
   }
 }
 
+/* ── Glossary term markers ───────────────────────────────────── */
+.gl-term {
+  cursor: help;
+  border-bottom: 1px dashed var(--color-cyan-muted);
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.gl-term:hover,
+.gl-term:focus {
+  color: var(--color-cyan);
+  border-bottom-color: var(--color-cyan);
+  outline: none;
+}
+
+/* ── Glossary popover ────────────────────────────────────────── */
+#gl-popover {
+  position: fixed;
+  width: 300px;
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border-bright);
+  border-left: 3px solid var(--color-cyan);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  z-index: 300;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 150ms ease, transform 150ms ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--color-divider);
+}
+
+#gl-popover.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.gl-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  margin-bottom: var(--space-2);
+}
+
+.gl-def {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  #gl-popover {
+    width: calc(100vw - 20px);
+    left: 10px !important;
+  }
+}
+
 /* ── Scroll progress bar ─────────────────────────────────────── */
 #scroll-progress {
   position: fixed;
