@@ -293,6 +293,20 @@ function initNetworkCanvas(canvasId) {
     draw();
   });
 
+  // Touch support for mobile
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    const target = getNodeAt(x, y);
+    if (!target) return;
+    selectedId = target.id;
+    updateDetail(selectedId);
+    draw();
+  }, { passive: false });
+
   window.addEventListener('resize', () => {
     layoutNodes();
     draw();
@@ -306,4 +320,55 @@ function initNetworkCanvas(canvasId) {
 // ── Init network on hub page if present ────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initNetworkCanvas('network-canvas');
+  initScrollProgress();
+  initBackToTop();
+  initRiskBars();
 });
+
+// ── Scroll progress bar ─────────────────────────────────────────
+function initScrollProgress() {
+  const bar = document.createElement('div');
+  bar.id = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+}
+
+// ── Floating back-to-top button ─────────────────────────────────
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.setAttribute('aria-label', 'Retour en haut de page');
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4"/></svg>`;
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ── Risk bar animation (democraties.html) ───────────────────────
+function initRiskBars() {
+  const bars = document.querySelectorAll('.risk-bar-fill[data-width]');
+  if (!bars.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width + '%';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  bars.forEach(bar => observer.observe(bar));
+}

@@ -1441,6 +1441,170 @@ hr.section-divider {
   .hero-cta-group { flex-direction: column; align-items: center; }
 }
 
+/* ── Inter-page navigation (continuer la lecture) ───────────── */
+.chapter-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-divider);
+}
+
+.chapter-nav-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.chapter-nav-card:hover {
+  border-color: var(--color-border-bright);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.chapter-nav-card.next {
+  text-align: right;
+  border-left: 3px solid var(--color-red-bright);
+}
+
+.chapter-nav-card.prev {
+  border-left: 3px solid var(--color-border-bright);
+}
+
+.chapter-nav-card.next:hover {
+  border-color: var(--color-red-bright);
+}
+
+.chapter-nav-direction {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.chapter-nav-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.chapter-nav-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .chapter-nav {
+    grid-template-columns: 1fr;
+  }
+  .chapter-nav-card.next {
+    text-align: left;
+  }
+}
+
+/* ── Scroll progress bar ─────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-red), var(--color-red-bright), var(--color-cyan));
+  z-index: 9998;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ── Back-to-top button ──────────────────────────────────────── */
+#back-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-bright);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--transition), transform var(--transition),
+              border-color var(--transition), color var(--transition),
+              box-shadow var(--transition);
+  z-index: 50;
+  pointer-events: none;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  border-color: var(--color-red-bright);
+  color: var(--color-red-bright);
+  box-shadow: var(--shadow-red);
+}
+
+/* ── Stat card source tooltip ────────────────────────────────── */
+.stat-card[data-source] {
+  position: relative;
+}
+
+.stat-card[data-source]::after {
+  content: attr(data-source);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  max-width: 280px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: 10;
+}
+
+.stat-card[data-source]:hover::after {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .stat-card[data-source]::after {
+    left: 0;
+    transform: none;
+    max-width: 100%;
+  }
+
+  #back-to-top {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
