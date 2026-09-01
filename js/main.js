@@ -72,14 +72,15 @@ window.ModalSystem = {
 };
 
 // ── Counter animation ───────────────────────────────────────────
-function animateCounter(el, target, suffix = '', duration = 1500) {
+function animateCounter(el, target, suffix = '', duration = 1500, decimals = null) {
   const start = performance.now();
-  const isFloat = target % 1 !== 0;
+  const dec = decimals !== null ? decimals : (target % 1 !== 0 ? 1 : 0);
+  const fmt = (v) => v.toLocaleString('fr-FR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   const update = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
     const value = ease * target;
-    el.textContent = (isFloat ? value.toFixed(1) : Math.floor(value)) + suffix;
+    el.textContent = fmt(value) + suffix;
     if (progress < 1) requestAnimationFrame(update);
   };
   requestAnimationFrame(update);
@@ -92,7 +93,8 @@ const statObserver = new IntersectionObserver((entries) => {
       const el = entry.target;
       const target = parseFloat(el.dataset.target);
       const suffix = el.dataset.suffix || '';
-      if (!isNaN(target)) animateCounter(el, target, suffix);
+      const decimals = el.dataset.decimals != null ? parseInt(el.dataset.decimals, 10) : null;
+      if (!isNaN(target)) animateCounter(el, target, suffix, 1500, decimals);
       statObserver.unobserve(el);
     }
   });
@@ -117,49 +119,61 @@ function initNetworkCanvas(canvasId) {
   const detailLink = document.getElementById('network-detail-link');
 
   const nodes = [
-    { id: 'musk', label: 'Elon Musk', xPct: 0.25, yPct: 0.22, r: 28, color: '#c8102e', group: 'figure', kicker: 'Figure / Plateformes', body: "Point de jonction entre réseau social, IA, contrats publics et influence électorale.", href: 'pages/figures.html' },
-    { id: 'thiel', label: 'Peter Thiel', xPct: 0.49, yPct: 0.18, r: 26, color: '#c8102e', group: 'figure', kicker: 'Figure / Capital-risque', body: "Nœud majeur entre capital-risque, surveillance, financement politique et diffusion d'idées néo-réactionnaires.", href: 'pages/figures.html' },
-    { id: 'andreessen', label: 'Andreessen', xPct: 0.72, yPct: 0.24, r: 22, color: '#c8102e', group: 'figure', kicker: 'Figure / Doctrine', body: "Voix centrale d'un techno-optimisme offensif, opposé aux freins démocratiques et réglementaires.", href: 'pages/figures.html' },
-    { id: 'yarvin', label: 'C. Yarvin', xPct: 0.58, yPct: 0.42, r: 20, color: '#9d174d', group: 'figure', kicker: 'Figure / Théorie', body: "Source doctrinale majeure pour penser l'État comme entreprise et la démocratie comme obstacle.", href: 'pages/figures.html' },
-    { id: 'vance', label: 'JD Vance', xPct: 0.39, yPct: 0.44, r: 20, color: '#7e22ce', group: 'figure', kicker: 'Relais institutionnel', body: "Lien entre des idées issues de la droite tech et leur traduction dans l'appareil politique américain.", href: 'pages/figures.html' },
-    { id: 'palantir', label: 'Palantir', xPct: 0.5, yPct: 0.66, r: 24, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Données', body: "Cas d'étude central où des infrastructures privées deviennent des instruments de sécurité et de gouvernement.", href: 'pages/infrastructure.html' },
-    { id: 'x', label: 'X / Twitter', xPct: 0.14, yPct: 0.44, r: 22, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Plateforme', body: "Espace d'amplification politique, de hiérarchisation algorithmique et de conflictualité informationnelle.", href: 'pages/infrastructure.html' },
-    { id: 'doge', label: 'DOGE', xPct: 0.24, yPct: 0.7, r: 22, color: '#f59e0b', group: 'institution', kicker: 'Institution / Brouillage', body: "Structure emblématique du brouillage entre expertise privée, accès aux systèmes fédéraux et démantèlement administratif.", href: 'pages/infrastructure.html' },
-    { id: 'anduril', label: 'Anduril', xPct: 0.72, yPct: 0.63, r: 18, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Défense', body: "Incarnation de la privatisation de capacités militaires, sécuritaires et frontalières.", href: 'pages/infrastructure.html' },
-    { id: 'nrx', label: 'NRx / Dark\nEnlightenment', xPct: 0.77, yPct: 0.47, r: 20, color: '#7c3aed', group: 'ideology', kicker: 'Idéologie', body: "Corpus doctrinal anti-démocratique structurant pour une partie de l'écosystème étudié.", href: 'pages/ideologies.html' },
-    { id: 'cia', label: 'CIA / NSA', xPct: 0.39, yPct: 0.84, r: 18, color: '#374151', group: 'institution', kicker: 'Institution / Renseignement', body: "Représente ici l'arrimage ancien entre certaines entreprises tech et les appareils de sécurité nationale.", href: 'pages/infrastructure.html' },
-    { id: 'pentagon', label: 'Pentagon', xPct: 0.64, yPct: 0.84, r: 18, color: '#374151', group: 'institution', kicker: 'Institution / Défense', body: "Lieu d'agrégation entre innovations privées, contrats militaires et souveraineté technique.", href: 'pages/infrastructure.html' },
-    { id: 'xai', label: 'xAI / Grok', xPct: 0.1, yPct: 0.63, r: 18, color: '#c8102e', group: 'company', kicker: 'Entreprise / IA', body: "Montre l'imbrication entre plateformes, IA générative et personnalisation idéologique de l'écosystème Musk.", href: 'pages/infrastructure.html' },
-    { id: 'eacc', label: 'e/acc', xPct: 0.9, yPct: 0.28, r: 16, color: '#0891b2', group: 'ideology', kicker: 'Idéologie', body: "Version militante d'une accélération technologique assumée, hostile au principe de précaution.", href: 'pages/ideologies.html' },
-    { id: 'trump', label: 'Admin Trump', xPct: 0.1, yPct: 0.84, r: 22, color: '#b45309', group: 'institution', kicker: 'Institution / Exécutif', body: "Pôle de traduction politique et administrative de nombreuses proximités étudiées ici.", href: 'pages/democraties.html' },
-    { id: 'clearview', label: 'Clearview AI', xPct: 0.58, yPct: 0.95, r: 16, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Biométrie', body: "Exemple d'une entreprise qui pousse à l'extrême la logique d'identification biométrique à grande échelle.", href: 'pages/infrastructure.html' },
+    { id: 'musk', label: 'Elon Musk', xPct: 0.24, yPct: 0.16, r: 28, color: '#c8102e', group: 'figure', kicker: 'Figure / Opérateur', body: "Plateforme, IA, satellites militaires, argent électoral : un cumul inédit. Parti du gouvernement en mai 2025, réconcilié avec Trump en septembre, il refinance le camp républicain pour les midterms 2026.", href: 'pages/figures.html' },
+    { id: 'thiel', label: 'Peter Thiel', xPct: 0.5, yPct: 0.16, r: 26, color: '#c8102e', group: 'figure', kicker: 'Figure / Financeur', body: "Le nœud : Palantir, Anduril, Vance, Yarvin. Depuis 2025 il théorise en public que réguler la technologie est l'œuvre de l'Antéchrist.", href: 'pages/figures.html' },
+    { id: 'andreessen', label: 'Andreessen', xPct: 0.74, yPct: 0.2, r: 22, color: '#c8102e', group: 'figure', kicker: 'Figure / Financeur', body: "a16z est devenu la machine politique de la tech : super PAC pro-IA (Leading the Future), premier donateur du cycle 2026, guerre contre les lois des États.", href: 'pages/figures.html' },
+    { id: 'yarvin', label: 'C. Yarvin', xPct: 0.6, yPct: 0.42, r: 20, color: '#9d174d', group: 'figure', kicker: 'Figure / Théoricien', body: "Fournit le vocabulaire depuis 2007 : la Cathédrale, le PDG-monarque, RAGE. Interviewé par le New York Times en 2025.", href: 'pages/figures.html' },
+    { id: 'vance', label: 'JD Vance', xPct: 0.38, yPct: 0.42, r: 20, color: '#7e22ce', group: 'figure', kicker: 'Figure / Politique', body: "Le relais institutionnel : financé par Thiel, se réclamant de Yarvin, vice-président et favori républicain pour 2028.", href: 'pages/figures.html' },
+    { id: 'karp', label: 'A. Karp', xPct: 0.68, yPct: 0.62, r: 18, color: '#c8102e', group: 'figure', kicker: 'Figure / Opérateur', body: "PDG de Palantir. Défend une « République technologique » où la tech sert l'État et la guerre ; traite les labos d'IA prudents de « marxistes » (2026).", href: 'pages/figures.html' },
+    { id: 'palantir', label: 'Palantir', xPct: 0.52, yPct: 0.68, r: 24, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Données', body: "La colonne vertébrale : ICE, Army (10 Mds$), OTAN, IRS. 8,15 Mds$ de revenus attendus en 2026, capitalisation ~400 Mds$.", href: 'pages/infrastructure.html' },
+    { id: 'x', label: 'X · Grok', xPct: 0.1, yPct: 0.4, r: 22, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Plateforme + IA', body: "Réseau social et IA fusionnés (2025). Amplification des contenus de Musk, incident « MechaHitler », deepfakes sexualisés, première amende DSA.", href: 'pages/infrastructure.html' },
+    { id: 'spacex', label: 'SpaceX\nStarlink', xPct: 0.2, yPct: 0.6, r: 20, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Infrastructure', body: "Fusées, satellites, IA et réseau social dans une seule entité depuis février 2026. IPO à ~1 750 Mds$ en juin 2026. Contractant du Golden Dome.", href: 'pages/infrastructure.html' },
+    { id: 'doge', label: 'DOGE', xPct: 0.32, yPct: 0.74, r: 20, color: '#f59e0b', group: 'institution', kicker: 'Institution / Dissoute', body: "Créé par décret le 20 janv. 2025, « n'existe plus » en nov. 2025. 214 Mds$ d'économies revendiquées, ~1,4 Md$ vérifiées, 135 Mds$ de coût estimé. L'accès aux données, lui, est resté.", href: 'pages/infrastructure.html' },
+    { id: 'anduril', label: 'Anduril', xPct: 0.84, yPct: 0.7, r: 18, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Défense', body: "Armes autonomes, tours frontalières, logiciel du Golden Dome. Valorisée 61 Mds$ en mai 2026, financée par Founders Fund et a16z.", href: 'pages/infrastructure.html' },
+    { id: 'nrx', label: 'NRx / Dark\nEnlightenment', xPct: 0.82, yPct: 0.48, r: 20, color: '#7c3aed', group: 'ideology', kicker: 'Idéologie', body: "Le corpus anti-démocratique de référence : Yarvin, Land. Démocratie = échec ; État = entreprise ; élite technique = classe légitime.", href: 'pages/ideologies.html' },
+    { id: 'eacc', label: 'e/acc', xPct: 0.92, yPct: 0.3, r: 16, color: '#0891b2', group: 'ideology', kicker: 'Idéologie', body: "Accélérer sans frein. Le principe de précaution comme « ennemi ». Manifeste d'Andreessen (2023).", href: 'pages/ideologies.html' },
+    { id: 'trump', label: 'Admin Trump', xPct: 0.1, yPct: 0.86, r: 22, color: '#b45309', group: 'institution', kicker: 'Institution / Exécutif', body: "Le lieu où les proximités deviennent décrets : DOGE, base de données unifiée, préemption des lois IA, 75 Mds$ pour ICE, visa ban contre les régulateurs européens.", href: 'pages/democraties.html' },
+    { id: 'ice', label: 'ICE', xPct: 0.34, yPct: 0.92, r: 18, color: '#f59e0b', group: 'institution', kicker: 'Institution / Police migratoire', body: "Agence de police la mieux dotée du pays (75 Mds$ sur 4 ans). Client de Palantir, Clearview, Mobile Fortify. 2 411 accords 287(g) avec des polices locales.", href: 'pages/infrastructure.html' },
+    { id: 'cia', label: 'CIA', xPct: 0.5, yPct: 0.92, r: 16, color: '#374151', group: 'institution', kicker: 'Institution / Renseignement', body: "Premier client de Palantir via In-Q-Tel : l'arrimage originel entre la tech de Thiel et l'appareil de sécurité nationale.", href: 'pages/infrastructure.html' },
+    { id: 'pentagon', label: 'Pentagone', xPct: 0.7, yPct: 0.9, r: 18, color: '#374151', group: 'institution', kicker: 'Institution / Défense', body: "Army EA 10 Mds$ (Palantir), Grok for Government (xAI), Golden Dome (Anduril, Palantir, SpaceX).", href: 'pages/infrastructure.html' },
+    { id: 'clearview', label: 'Clearview', xPct: 0.88, yPct: 0.9, r: 16, color: '#00d4ff', group: 'company', kicker: 'Entreprise / Biométrie', body: "Base de 30+ milliards de visages scrappés. Amendes RGPD en Europe ; contrats ICE (9,2 M$) et CBP en 2025-2026.", href: 'pages/infrastructure.html' },
+    { id: 'ue', label: 'UE / DSA', xPct: 0.06, yPct: 0.62, r: 18, color: '#22c55e', group: 'counter', kicker: 'Contre-pouvoir', body: "Le principal contre-pouvoir réglementaire : amende DSA contre X, enquête Grok, refus de Palantir par la Bundeswehr. Cible de l'offensive commerciale et diplomatique américaine.", href: 'pages/democraties.html' },
   ];
 
   const edges = [
-    { from: 'musk', to: 'x', weight: 3, label: "contrôle de plateforme et hiérarchisation de l'espace public" },
-    { from: 'musk', to: 'doge', weight: 3, label: "intervention directe dans l'appareil d'État" },
-    { from: 'musk', to: 'xai', weight: 2, label: "chaîne intégrée entre plateforme et IA" },
-    { from: 'musk', to: 'trump', weight: 3, label: "alliance politique et influence sur l'exécutif" },
-    { from: 'musk', to: 'eacc', weight: 2, label: "affinité avec l'imaginaire accélérationniste" },
-    { from: 'musk', to: 'nrx', weight: 1, label: "porosité avec des références anti-démocratiques" },
-    { from: 'thiel', to: 'palantir', weight: 3, label: "ancrage industriel dans la surveillance et la donnée" },
-    { from: 'thiel', to: 'vance', weight: 3, label: "financement et mise à l'agenda politique" },
-    { from: 'thiel', to: 'yarvin', weight: 2, label: "soutien à un répertoire doctrinal commun" },
-    { from: 'thiel', to: 'nrx', weight: 2, label: "circulation directe avec la néo-réaction" },
-    { from: 'thiel', to: 'anduril', weight: 1, label: "proximité avec l'écosystème defense-tech" },
-    { from: 'palantir', to: 'cia', weight: 2, label: "histoire commune avec le renseignement américain" },
-    { from: 'palantir', to: 'pentagon', weight: 2, label: "intégration dans la défense et la sécurité" },
-    { from: 'palantir', to: 'doge', weight: 2, label: "continuité entre outils de donnée et fonctions d'État" },
-    { from: 'andreessen', to: 'nrx', weight: 1, label: "tolérance intellectuelle envers le répertoire néo-réactionnaire" },
-    { from: 'andreessen', to: 'eacc', weight: 2, label: "légitimation publique de l'accélération sans frein" },
-    { from: 'andreessen', to: 'yarvin', weight: 1, label: "proximité avec certains milieux doctrinaux" },
-    { from: 'yarvin', to: 'nrx', weight: 3, label: "source théorique principale du courant" },
-    { from: 'vance', to: 'trump', weight: 3, label: "traduction politique et gouvernementale" },
-    { from: 'vance', to: 'nrx', weight: 2, label: "référence revendiquée ou reconnue à certaines idées" },
-    { from: 'anduril', to: 'pentagon', weight: 2, label: "externalisation de capacités militaires à des start-ups" },
-    { from: 'trump', to: 'doge', weight: 2, label: "couverture institutionnelle de la réorganisation administrative" },
-    { from: 'clearview', to: 'cia', weight: 1, label: "convergence entre biométrie privée et logiques sécuritaires" },
-    { from: 'xai', to: 'eacc', weight: 1, label: "proximité avec un récit d'accélération IA" },
+    { from: 'musk', to: 'x', weight: 3, label: "propriétaire ; l'algorithme amplifie ses propres contenus" },
+    { from: 'musk', to: 'spacex', weight: 3, label: "PDG ; fusion SpaceX–xAI (fév. 2026), IPO (juin 2026)" },
+    { from: 'musk', to: 'doge', weight: 3, label: "direction de fait, janvier–mai 2025" },
+    { from: 'musk', to: 'trump', weight: 3, label: "≈290 M$ en 2024 ; rupture juin 2025 ; réconciliation sept. 2025 ; ≥85 M$ pour 2026" },
+    { from: 'musk', to: 'eacc', weight: 1, label: "affinité avec l'imaginaire accélérationniste" },
+    { from: 'musk', to: 'ue', weight: 2, label: "« abolir l'UE » après l'amende DSA ; soutien à l'AfD et à Reform UK" },
+    { from: 'x', to: 'ue', weight: 2, label: "première amende DSA, 120 M€ (déc. 2025) ; enquête étendue à Grok (janv. 2026)" },
+    { from: 'spacex', to: 'x', weight: 2, label: "X absorbé par xAI (mars 2025), xAI par SpaceX (fév. 2026)" },
+    { from: 'spacex', to: 'pentagon', weight: 2, label: "Starlink, Grok for Government (200 M$), intercepteurs du Golden Dome" },
+    { from: 'thiel', to: 'palantir', weight: 3, label: "co-fondateur, premier actionnaire individuel (~3 %)" },
+    { from: 'thiel', to: 'karp', weight: 2, label: "duo fondateur de Palantir depuis 2003" },
+    { from: 'thiel', to: 'vance', weight: 3, label: "15 M$ pour le Sénat (2022) ; l'a poussé sur le ticket" },
+    { from: 'thiel', to: 'yarvin', weight: 2, label: "investisseur d'Urbit ; Yarvin dit l'avoir « coaché »" },
+    { from: 'thiel', to: 'nrx', weight: 2, label: "« liberté et démocratie ne sont plus compatibles » (2009)" },
+    { from: 'thiel', to: 'anduril', weight: 2, label: "Founders Fund : 1 Md$ dans la levée de 2025" },
+    { from: 'karp', to: 'palantir', weight: 3, label: "PDG depuis la fondation" },
+    { from: 'palantir', to: 'ice', weight: 3, label: "ImmigrationOS, contrat ICM (>145 M$), outil ELITE sur les données Medicaid" },
+    { from: 'palantir', to: 'cia', weight: 2, label: "In-Q-Tel, premier client (2005)" },
+    { from: 'palantir', to: 'pentagon', weight: 3, label: "Army EA 10 Mds$ (2025), Maven, OTAN" },
+    { from: 'palantir', to: 'doge', weight: 2, label: "« mega API » à l'IRS, base de données fédérale unifiée" },
+    { from: 'palantir', to: 'ue', weight: 1, label: "1,5 Md£ au Royaume-Uni ; la Bundeswehr refuse Gotham" },
+    { from: 'andreessen', to: 'nrx', weight: 1, label: "qualifie Yarvin d'« ami » ; Nick Land parmi ses « saints »" },
+    { from: 'andreessen', to: 'eacc', weight: 2, label: "Manifeste techno-optimiste (2023)" },
+    { from: 'andreessen', to: 'trump', weight: 2, label: "a16z premier donateur 2026 ; super PAC Leading the Future" },
+    { from: 'yarvin', to: 'nrx', weight: 3, label: "fondateur du courant (2007)" },
+    { from: 'vance', to: 'trump', weight: 3, label: "vice-président ; président des finances du parti" },
+    { from: 'vance', to: 'nrx', weight: 2, label: "« Yarvin a influencé ma pensée » (2024)" },
+    { from: 'vance', to: 'ue', weight: 1, label: "Munich (fév. 2025) : « la menace vient de l'intérieur »" },
+    { from: 'anduril', to: 'pentagon', weight: 2, label: "Golden Dome, Arsenal-1, intercepteurs spatiaux (2026)" },
+    { from: 'trump', to: 'doge', weight: 2, label: "créé par décret le 20 janv. 2025 ; dissous de fait en nov. 2025" },
+    { from: 'trump', to: 'ice', weight: 3, label: "75 Mds$ (loi du 4 juil. 2025) ; 2 411 accords 287(g)" },
+    { from: 'trump', to: 'ue', weight: 2, label: "visa ban contre Breton (déc. 2025) ; Section 301 contre DSA/DMA" },
+    { from: 'clearview', to: 'ice', weight: 2, label: "contrat 9,2 M$ (sept. 2025), commandes 2026" },
   ];
 
   function layoutNodes() {
@@ -195,7 +209,8 @@ function initNetworkCanvas(canvasId) {
     detailTitle.textContent = node.label.replace('\n', ' ');
     detailBody.textContent = node.body;
     detailLink.setAttribute('href', node.href);
-    detailLink.textContent = `Ouvrir ${node.group === 'ideology' ? 'la page des idées' : 'la page liée'}`;
+    const linkLabels = { ideology: 'Ouvrir le chapitre Idéologies', figure: 'Ouvrir la fiche', company: 'Ouvrir le chapitre Infrastructure', institution: 'Ouvrir le chapitre lié', counter: 'Ouvrir le chapitre Démocraties' };
+    detailLink.textContent = linkLabels[node.group] || 'Ouvrir la page liée';
     detailLinks.innerHTML = relatedEdges
       .sort((a, b) => b.weight - a.weight)
       .map((edge) => {
@@ -329,7 +344,39 @@ const GLOSSARY = {
   },
   doge: {
     label: 'DOGE — Dept. of Government Efficiency',
-    def: 'Structure para-gouvernementale dirigée par Musk depuis janvier 2025. Accès controversé aux systèmes fédéraux, licenciements massifs de fonctionnaires, logique de démantèlement administratif sans base légale claire.'
+    def: 'Structure créée par décret le 20 janv. 2025 et dirigée de fait par Musk jusqu\'en mai 2025 : accès aux systèmes fédéraux, licenciements massifs. Dissoute de fait en nov. 2025. Bilan : 214 Mds$ d\'économies revendiquées, ~1,4 Md$ vérifiées, 135 Mds$ de coût estimé.'
+  },
+  broligarchie: {
+    label: 'Broligarchie',
+    def: 'Mot-valise (bro + oligarchie) popularisé par la journaliste Carole Cadwalladr en janv. 2025 : la petite fraternité de milliardaires tech alignés sur Trump. La recherche parle désormais de « souveraineté oligarchique ».'
+  },
+  dsa: {
+    label: 'DSA — Digital Services Act',
+    def: 'Règlement européen (2022) imposant aux grandes plateformes transparence, modération et accès des chercheurs. Première amende : 120 M€ contre X (déc. 2025). Cible principale de l\'offensive américaine contre la régulation numérique.'
+  },
+  golden_dome: {
+    label: 'Golden Dome',
+    def: 'Bouclier antimissile spatial annoncé en 2025 (175 Mds$ officiels, jusqu\'à 3 600 Mds$ selon l\'AEI). Logiciel de commandement confié à Anduril et Palantir ; SpaceX parmi les contractants des intercepteurs spatiaux (2026).'
+  },
+  immigrationos: {
+    label: 'ImmigrationOS',
+    def: 'Système commandé par ICE à Palantir en avril 2025 (30 M$) : croiser des dizaines de bases fédérales pour cibler les personnes à expulser et suivre les « auto-déportations ». Intégré depuis au contrat ICM (>145 M$).'
+  },
+  s287g: {
+    label: '287(g)',
+    def: 'Article de loi permettant à ICE de déléguer des pouvoirs de police migratoire à des polices locales. 1 372 accords en janv. 2026 ; 2 411 dans 39 États au 31 août 2026.'
+  },
+  ltf: {
+    label: 'Leading the Future',
+    def: 'Super PAC lancé en août 2025 par a16z, Greg Brockman (OpenAI), Joe Lonsdale et d\'autres, doté de plus de 100 M$ : battre les élus favorables à la régulation de l\'IA, imposer un cadre fédéral unique.'
+  },
+  mobile_fortify: {
+    label: 'Mobile Fortify',
+    def: 'Application de reconnaissance faciale de terrain déployée par ICE en 2025 : un agent photographie un visage, l\'app le compare à des centaines de millions d\'images et aux données croisées par Palantir.'
+  },
+  antechrist: {
+    label: 'L\'Antéchrist selon Thiel',
+    def: 'Thème des conférences de Peter Thiel (San Francisco 2025, Rome 2026) : l\'Antéchrist serait un gouvernement mondial qui, au nom des peurs (IA, climat, nucléaire), régulerait la technologie. Réguler, c\'est donc pactiser avec le mal.'
   },
   cathedral: {
     label: 'La Cathédrale',
@@ -341,7 +388,7 @@ const GLOSSARY = {
   },
   network_state: {
     label: 'Network State',
-    def: 'Concept de Balaji Srinivasan (2022) : rassembler en ligne des individus partageant des valeurs, puis acquérir des territoires physiques pour créer de nouveaux États souverains, hors démocraties existantes.'
+    def: 'Concept de Balaji Srinivasan (2022) : rassembler en ligne des individus partageant des valeurs, puis acquérir des territoires pour créer de nouveaux États hors des démocraties existantes. Conférence à Singapour (oct. 2025) ; sa « Network School » a été expulsée de Malaisie en 2026.'
   },
   rage: {
     label: 'RAGE — Retire All Government Employees',
@@ -357,7 +404,7 @@ const GLOSSARY = {
   },
   palantir: {
     label: 'Palantir Technologies',
-    def: 'Entreprise de données fondée en 2002 par Peter Thiel avec la CIA (via In-Q-Tel). Contrats avec NSA, FBI, ICE, Pentagon. 970M$ de contrats fédéraux en 2025, +1700% en bourse en 3 ans.'
+    def: 'Entreprise de données fondée en 2003 par Peter Thiel et Alex Karp, financée par In-Q-Tel (CIA). Contrats ICE, US Army (10 Mds$), OTAN, IRS. 8,15 Mds$ de revenus attendus en 2026, capitalisation ~400 Mds$.'
   },
   clearview: {
     label: 'Clearview AI',
@@ -463,7 +510,55 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initRiskBars();
   initGlossary();
+  initFilterChips();
+  initHTimeline();
 });
+
+// ── Filtres par chips (figures, secteurs…) ──────────────────────
+function initFilterChips() {
+  const bars = document.querySelectorAll('.filter-bar[data-filter-scope]');
+  bars.forEach((bar) => {
+    const scope = bar.dataset.filterScope;
+    const chips = bar.querySelectorAll('.filter-chip[data-filter]');
+    const targets = document.querySelectorAll(`[data-filter-target="${scope}"]`);
+    if (!chips.length || !targets.length) return;
+
+    function apply(value) {
+      chips.forEach((chip) => chip.setAttribute('aria-pressed', String(chip.dataset.filter === value)));
+      targets.forEach((el) => {
+        const tags = (el.dataset.tags || '').split(/\s+/);
+        const show = value === 'all' || tags.includes(value);
+        el.classList.toggle('is-hidden', !show);
+      });
+    }
+
+    chips.forEach((chip) => chip.addEventListener('click', () => apply(chip.dataset.filter)));
+    apply('all');
+  });
+}
+
+// ── Frise horizontale (boutons + clavier) ───────────────────────
+function initHTimeline() {
+  document.querySelectorAll('.tl-h-wrap').forEach((wrap) => {
+    const track = wrap.querySelector('.tl-h');
+    if (!track) return;
+    const step = () => {
+      const first = track.querySelector('.evt');
+      return first ? first.getBoundingClientRect().width + 16 : 320;
+    };
+    wrap.querySelector('[data-dir="prev"]')?.addEventListener('click', () => {
+      track.scrollBy({ left: -step() * 2, behavior: 'smooth' });
+    });
+    wrap.querySelector('[data-dir="next"]')?.addEventListener('click', () => {
+      track.scrollBy({ left: step() * 2, behavior: 'smooth' });
+    });
+    track.setAttribute('tabindex', '0');
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: step(), behavior: 'smooth' }); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); track.scrollBy({ left: -step(), behavior: 'smooth' }); }
+    });
+  });
+}
 
 // ── Scroll progress bar ─────────────────────────────────────────
 function initScrollProgress() {
@@ -498,7 +593,7 @@ function initBackToTop() {
 
 // ── Risk bar animation (democraties.html) ───────────────────────
 function initRiskBars() {
-  const bars = document.querySelectorAll('.risk-bar-fill[data-width]');
+  const bars = document.querySelectorAll('.risk-bar-fill[data-width], .kpi-bar[data-width]');
   if (!bars.length) return;
 
   const observer = new IntersectionObserver((entries) => {
