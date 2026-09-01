@@ -1,306 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TECHNOFASCISME — Cartographie d'un pouvoir émergent</title>
-<meta name="description" content="Exploration pédagogique et visuelle du technofascisme : ses origines, ses figures, son infrastructure et les enjeux pour nos démocraties.">
+<title>TECHNOFASCISME — Cartographie d'un pouvoir</title>
+<meta name="description" content="Infographie interactive : comment une oligarchie tech, des doctrines anti-démocratiques et des infrastructures de surveillance convergent. Figures, réseau, chronologie 2025-2026, enjeux.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Index-specific overrides */
-  .hero-definition {
-    max-width: var(--content-default);
-    margin: 0 auto var(--space-20);
-    padding: 0 var(--space-8);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-    align-items: start;
-  }
-  @media (max-width: 768px) {
-    .hero-definition { grid-template-columns: 1fr; gap: var(--space-8); }
-  }
-  .definition-box {
-    background: var(--color-surface-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-8);
-    border-left: 3px solid var(--color-red-bright);
-  }
-  .definition-box h3 {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--color-red-bright);
-    margin-bottom: var(--space-4);
-  }
-  .definition-box p {
-    font-size: var(--text-base);
-    color: var(--color-text-muted);
-    line-height: 1.7;
-  }
-  .definition-box.cyan-box {
-    border-left-color: var(--color-cyan);
-  }
-  .definition-box.cyan-box h3 { color: var(--color-cyan); }
-
-  .home-method {
-    max-width: var(--content-wide);
-    margin: 0 auto;
-    padding: 0 var(--space-8) var(--space-20);
-  }
-
-  .method-grid,
-  .reading-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-5);
-  }
-
-  .panorama-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-5);
-    margin-top: var(--space-10);
-  }
-
-  .method-card,
-  .panorama-card,
-  .reading-card {
-    background: var(--color-surface-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-6);
-  }
-
-  .reading-card {
-    text-decoration: none;
-    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-  }
-
-  .reading-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-border-bright);
-    box-shadow: var(--shadow-card);
-  }
-
-  .method-card h3,
-  .panorama-card h3,
-  .reading-card h3 {
-    font-size: var(--text-base);
-    font-weight: 700;
-    margin-bottom: var(--space-3);
-  }
-
-  .method-card p,
-  .panorama-card p,
-  .reading-card p {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    line-height: 1.65;
-    max-width: 100%;
-  }
-
-  .panorama-kicker,
-  .reading-kicker {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-faint);
-    margin-bottom: var(--space-3);
-  }
-
-  .panorama-card ul,
-  .reading-card ul {
-    list-style: none;
-    display: grid;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
-  }
-
-  .panorama-card li,
-  .reading-card li {
-    color: var(--color-text);
-    font-size: var(--text-sm);
-    line-height: 1.55;
-    max-width: 100%;
-  }
-
-  .panorama-card li::before,
-  .reading-card li::before {
-    content: '↳ ';
-    color: var(--color-cyan);
-  }
-
-  .reading-card strong {
-    color: var(--color-text);
-  }
-
   .network-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.9fr);
     gap: var(--space-6);
     align-items: stretch;
   }
-
-  .network-detail {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-    min-height: 500px;
-  }
-
-  .network-detail p {
-    max-width: 100%;
-  }
-
-  .network-links {
-    display: grid;
-    gap: var(--space-3);
-  }
-
+  .network-detail { display: flex; flex-direction: column; gap: var(--space-5); min-height: 500px; }
+  .network-detail p { max-width: 100%; }
+  .network-links { display: grid; gap: var(--space-3); }
   .network-link-item {
-    padding: var(--space-4);
+    padding: var(--space-3) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     background: var(--color-surface-2);
   }
+  .network-link-item strong { display: block; margin-bottom: 2px; color: var(--color-text); font-size: var(--text-sm); }
+  .network-link-item span { color: var(--color-text-muted); font-size: var(--text-xs); line-height: 1.5; }
+  .network-cta { margin-top: auto; }
+  .network-legend { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); justify-content: center; }
+  .legend-item { display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); letter-spacing: 0.05em; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  .network-link-item strong {
-    display: block;
-    margin-bottom: var(--space-1);
-    color: var(--color-text);
-    font-size: var(--text-sm);
-  }
+  .hub-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .hub-card { padding: var(--space-6); }
+  .hub-card p { font-size: var(--text-xs); }
 
-  .network-link-item span {
-    color: var(--color-text-muted);
-    font-size: var(--text-xs);
-    line-height: 1.5;
-  }
-
-  .network-cta {
-    margin-top: auto;
-  }
-
-  .hub-intro {
-    max-width: var(--content-default);
-    margin: 0 auto;
-    padding: 0 var(--space-8) var(--space-8);
-    text-align: center;
-  }
-
-  .hub-intro h2 {
-    font-size: var(--text-xl);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: var(--space-4);
-  }
-
-  .hub-intro p {
-    color: var(--color-text-muted);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .hub-section {
-    max-width: var(--content-wide);
-    margin: 0 auto;
-    padding: 0 var(--space-8) var(--space-24);
-  }
-
-  .network-section {
-    max-width: var(--content-wide);
-    margin: 0 auto;
-    padding: 0 var(--space-8) var(--space-24);
-  }
-
-  .network-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    margin-top: var(--space-6);
-    justify-content: center;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    letter-spacing: 0.05em;
-  }
-
-  .legend-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .marquee-wrapper {
-    overflow: hidden;
-    border-top: 1px solid var(--color-divider);
-    border-bottom: 1px solid var(--color-divider);
-    padding: var(--space-3) 0;
-    background: var(--color-surface-card);
-    margin-bottom: var(--space-12);
-  }
-
-  .marquee-track {
-    display: flex;
-    gap: var(--space-8);
-    animation: marquee 30s linear infinite;
-    width: max-content;
-  }
-
-  .marquee-item {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--color-text-faint);
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .marquee-item::after {
-    content: '//';
-    color: var(--color-red-bright);
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @media (max-width: 768px) {
-    .method-grid,
-    .panorama-grid,
-    .reading-grid,
+  @media (max-width: 900px) {
     .network-layout { grid-template-columns: 1fr; }
+    .network-detail { min-height: auto; }
   }
 </style>
 </head>
@@ -310,7 +48,7 @@
 <nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="Technofascisme — Accueil">
-      <svg class="logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="logo-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="26" height="26" rx="4" stroke="#c8102e" stroke-width="1.5"/>
         <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#c8102e" stroke-width="1.5" fill="rgba(200,16,46,0.15)"/>
         <circle cx="14" cy="14" r="2.5" fill="#00d4ff"/>
@@ -338,281 +76,49 @@
 </nav>
 
 <!-- HERO -->
-<section class="page-hero">
+<section class="page-hero compact">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="hero-glow hero-glow-red" aria-hidden="true"></div>
   <div class="hero-glow hero-glow-cyan" aria-hidden="true"></div>
 
-  <p class="hero-eyebrow">Une exploration · figures, idéologies, enjeux</p>
+  <div class="hero-kicker-row">
+    <p class="hero-eyebrow" style="margin:0">Infographie interactive</p>
+    <span class="update-badge">Mis à jour · septembre 2026</span>
+  </div>
   <h1 class="hero-title glitch">
     <span class="line-1">TECHNO</span>
     <span class="line-2">FASCISME</span>
   </h1>
   <p class="hero-subtitle">
-    Une enquête visuelle sur la manière dont des acteurs de la tech, des doctrines anti-démocratiques et des infrastructures numériques de pouvoir se rejoignent, se renforcent et se légitiment mutuellement.
+    Comment une poignée de milliardaires de la tech, des doctrines anti-démocratiques et des infrastructures de surveillance se sont rejoints — et ce que cela a produit depuis 2025.
   </p>
   <div class="hero-cta-group">
-    <a href="pages/origines.html" class="btn btn-primary">Explorer l'histoire</a>
-    <a href="pages/figures.html" class="btn btn-secondary">Les figures clés</a>
-    <a href="#chapters" class="btn btn-ghost">Voir les chapitres</a>
-  </div>
-
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <span>SCROLL</span>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M8 3v10M4 9l4 4 4-4"/>
-    </svg>
+    <a href="#network-section" class="btn btn-primary">Voir le réseau de pouvoir</a>
+    <a href="#actu" class="btn btn-secondary">Chronologie 2025-2026</a>
+    <a href="pages/figures.html" class="btn btn-ghost">Les figures</a>
   </div>
 </section>
 
 <!-- DEFINITION -->
-<section aria-label="Définitions clés">
-  <div class="hero-definition fade-in">
-    <div class="definition-box">
-      <h3>Définition de travail</h3>
-      <p>Ici, le terme <strong>technofascisme</strong> n'est pas employé comme une étiquette, mais comme une <strong>hypothèse de travail</strong> : nommer une configuration politique précise dans laquelle des élites technologiques concentrent des infrastructures stratégiques, s'appuient sur des doctrines anti-égalitaires et utilisent la technologie pour étendre un pouvoir de type oligarchique.</p>
-      <p style="margin-top:1rem; font-size: var(--text-xs); color: var(--color-text-faint); font-family: var(--font-mono);">Le projet s'appuie sur un faisceau d'auteurs critiques, de sources primaires, d'analyses académiques et d'enquêtes journalistiques.</p>
-    </div>
-    <div class="definition-box cyan-box">
-      <h3>Ce que la cartographie documente</h3>
-      <p>Le projet ne dit pas que tous les acteurs étudiés seraient identiques, ni qu'ils se revendiqueraient explicitement du fascisme. Il montre plutôt des <strong>continuités</strong>: financements politiques, réseaux d'admiration mutuelle, capture institutionnelle, privatisation du débat public, déploiement de dispositifs de surveillance et affinités avec des corpus intellectuels anti-démocratiques.</p>
+<div class="def-strip fade-in">
+  <div class="def-strip-inner">
+    <div class="def-strip-label">Définition</div>
+    <div>
+      <p><strong>Technofascisme</strong> : configuration politique dans laquelle des élites technologiques concentrent des infrastructures stratégiques, s'appuient sur des doctrines anti-égalitaires et utilisent l'accès à l'État pour étendre un pouvoir de type oligarchique.</p>
+      <p>Le mot est ici une hypothèse de travail, pas une étiquette : aucun des acteurs étudiés ne se réclame du fascisme. Ce que le site documente, ce sont des faits — contrats, financements, décrets, déclarations — et leurs continuités.</p>
     </div>
   </div>
-</section>
-
-<!-- METHODE -->
-<section aria-labelledby="method-heading">
-  <div class="home-method">
-    <div class="section-header fade-in" style="margin-bottom:var(--space-10)">
-      <span class="section-eyebrow">Méthode de lecture</span>
-      <h2 id="method-heading" class="section-title">Ce que montre cette enquête</h2>
-      <p class="section-lead">Pour être rigoureuse, une cartographie comme celle-ci doit distinguer les faits observables, les convergences idéologiques et la part d'interprétation critique. Cette page sert de boussole avant d'entrer dans les chapitres.</p>
-    </div>
-    <div class="method-grid fade-in">
-      <div class="method-card">
-        <div class="card-label">Niveau 01</div>
-        <h3>Des faits documentés</h3>
-        <p>Contrats publics, dons politiques, prises de parole, investissements, partenariats sécuritaires, usages policiers ou militaires: le socle de la démonstration repose d'abord sur des éléments vérifiables.</p>
-      </div>
-      <div class="method-card">
-        <div class="card-label">Niveau 02</div>
-        <h3>Des circulations d'idées</h3>
-        <p>Le site suit comment des notions naguère marginales passent d'essais, blogs ou manifestes à l'écosystème VC, aux plateformes, puis parfois aux institutions publiques.</p>
-      </div>
-      <div class="method-card">
-        <div class="card-label">Niveau 03</div>
-        <h3>Une hypothèse politique</h3>
-        <p>Le mot technofascisme fonctionne ici comme une hypothèse critique: tester si la rencontre entre puissance technique, mépris du pluralisme et aspiration à un pouvoir dur constitue bien autre chose qu'une dérive isolée.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PANORAMA -->
-<section aria-labelledby="panorama-heading">
-  <div class="section">
-    <div class="section-header fade-in">
-      <span class="section-eyebrow">Vue d'ensemble</span>
-      <h2 id="panorama-heading" class="section-title">Quatre axes pour lire le phénomène</h2>
-      <p class="section-lead">Le sujet devient plus lisible si l'on sépare ce qui relève des personnes, des doctrines, des machines et des effets démocratiques. Le technofascisme apparaît précisément à leur intersection.</p>
-    </div>
-    <div class="panorama-grid fade-in">
-      <div class="panorama-card">
-        <div class="panorama-kicker">Axe 01</div>
-        <h3>Acteurs</h3>
-        <p>Des entrepreneurs, investisseurs, théoriciens et relais politiques qui ne sont plus seulement des figures économiques, mais des agents capables d'agir sur l'État, les infrastructures et la circulation de l'information.</p>
-        <ul>
-          <li>Du milliardaire au stratège institutionnel</li>
-          <li>Du réseau VC au réseau de gouvernement</li>
-          <li>Du charisme de plateforme à la capacité d'influence</li>
-        </ul>
-      </div>
-      <div class="panorama-card">
-        <div class="panorama-kicker">Axe 02</div>
-        <h3>Doctrines</h3>
-        <p><span class="gl-term" data-term="nrx" tabindex="0">NRx</span>, <span class="gl-term" data-term="eacc" tabindex="0">e/acc</span>, libertarianisme autoritaire, transhumanisme hiérarchique ou <span class="gl-term" data-term="network_state" tabindex="0">Network State</span> ne se confondent pas, mais convergent souvent dans leur détestation des limites démocratiques.</p>
-        <ul>
-          <li>La démocratie décrite comme obstacle</li>
-          <li>L'élite technique décrite comme solution</li>
-          <li>La crise pensée comme moment d'opportunité</li>
-        </ul>
-      </div>
-      <div class="panorama-card">
-        <div class="panorama-kicker">Axe 03</div>
-        <h3>Machines</h3>
-        <p>Le basculement ne se joue pas seulement dans les idées. Il se matérialise dans des plateformes, des systèmes de surveillance, des modèles d'IA, des bases de données massives et des architectures de commandement.</p>
-        <ul>
-          <li>Biométrie, profiling, ciblage</li>
-          <li>Privatisation d'outils régaliens</li>
-          <li>Décision automatisée et opacité technique</li>
-        </ul>
-      </div>
-      <div class="panorama-card">
-        <div class="panorama-kicker">Axe 04</div>
-        <h3>Effets</h3>
-        <p>Le résultat n'est pas simplement plus de technologie. C'est un déplacement du centre de gravité politique: moins de contre-pouvoirs, moins de publicité des décisions, plus de dépendance à des infrastructures privées.</p>
-        <ul>
-          <li>Capture d'État graduelle</li>
-          <li>Affaiblissement du pluralisme informationnel</li>
-          <li>Normalisation d'une souveraineté oligarchique</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section aria-labelledby="stats-heading">
-  <div class="section">
-    <div class="section-header fade-in" style="margin-bottom:var(--space-10)">
-      <span class="section-eyebrow">Ordres de grandeur</span>
-      <h2 id="stats-heading" class="section-title">Quelques signaux matériels</h2>
-      <p class="section-lead">Ces chiffres ne prouvent pas à eux seuls une thèse politique. Ils montrent en revanche que le phénomène étudié engage des montants, des accès institutionnels et des dispositifs à une échelle industrielle.</p>
-    </div>
-    <div class="stats-grid fade-in">
-      <div class="stat-card stat-red" data-source="Source : Rapport annuel Palantir Technologies, 2025">
-        <div class="stat-number" data-target="970.5" data-suffix="M$">0M$</div>
-        <div class="stat-label">Contrats fédéraux Palantir en 2025 (+120% vs 2024)</div>
-      </div>
-      <div class="stat-card stat-cyan" data-source="Source : Bloomberg, NASDAQ — cours PLTR 2022-2025">
-        <div class="stat-number" data-target="1700" data-suffix="%">0%</div>
-        <div class="stat-label">Hausse du cours Palantir en 3 ans</div>
-      </div>
-      <div class="stat-card stat-amber" data-source="Source : FEC (Federal Election Commission), 2024">
-        <div class="stat-number" data-target="49.8" data-suffix="M$">0M$</div>
-        <div class="stat-label">Dons d'Andreessen à des candidats d'extrême droite en 2024</div>
-      </div>
-      <div class="stat-card stat-green" data-source="Source : OpenSecrets.org — FEC filings 2022">
-        <div class="stat-number" data-target="15" data-suffix="M$">0M$</div>
-        <div class="stat-label">Financement de Peter Thiel pour la campagne de JD Vance</div>
-      </div>
-      <div class="stat-card stat-red" data-source="Source : CNIL (France), ICO (UK), Garante (Italie) — décisions RGPD publiées">
-        <div class="stat-number" data-target="100" data-suffix="M€">0M€</div>
-        <div class="stat-label">Amendes RGPD contre Clearview AI en Europe</div>
-      </div>
-      <div class="stat-card stat-cyan" data-source="Source : Palantir investor guidance — Q4 2025 earnings call">
-        <div class="stat-number" data-target="3.14" data-suffix="Mds$">0Mds$</div>
-        <div class="stat-label">Prévisions de revenus Palantir pour 2026 (+60%)</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPITRES -->
-<section id="chapters" aria-labelledby="chapters-heading">
-  <div class="hub-intro fade-in">
-    <p class="section-eyebrow">Cartographie</p>
-    <h2 id="chapters-heading">Explorer les dimensions</h2>
-    <p>Chaque entrée répond à une question différente. Tu peux suivre l'ordre proposé ou choisir un angle d'entrée selon que tu veux comprendre l'histoire, les acteurs, les outils ou les effets.</p>
-  </div>
-
-  <div class="hub-section">
-    <div class="hub-grid fade-in">
-
-      <a href="pages/origines.html" class="hub-card" data-color="red">
-        <span class="hub-card-number" aria-hidden="true">01</span>
-        <div class="hub-card-emoji" aria-hidden="true">🏛️</div>
-        <h3>Origines &amp; Généalogie</h3>
-        <p>Du fascisme japonais des années 1930 au cyberlibertarianisme de la Silicon Valley. Gorz, Pasolini, Eco : les théoriciens qui ont anticipé.</p>
-        <div class="hub-card-arrow" aria-hidden="true">Explorer →</div>
-      </a>
-
-      <a href="pages/figures.html" class="hub-card" data-color="cyan">
-        <span class="hub-card-number" aria-hidden="true">02</span>
-        <div class="hub-card-emoji" aria-hidden="true">👤</div>
-        <h3>Les Figures Clés</h3>
-        <p>Musk, Thiel, Andreessen, Yarvin, Vance, Srinivasan : qui sont ces hommes qui veulent « rebooter » la démocratie ?</p>
-        <div class="hub-card-arrow" aria-hidden="true">Profils →</div>
-      </a>
-
-      <a href="pages/infrastructure.html" class="hub-card" data-color="amber">
-        <span class="hub-card-number" aria-hidden="true">03</span>
-        <div class="hub-card-emoji" aria-hidden="true">🔬</div>
-        <h3>Infrastructure &amp; Secteurs</h3>
-        <p><span class="gl-term" data-term="palantir" tabindex="0">Palantir</span>, <span class="gl-term" data-term="clearview" tabindex="0">Clearview AI</span>, <span class="gl-term" data-term="anduril" tabindex="0">Anduril</span>, <span class="gl-term" data-term="doge" tabindex="0">DOGE</span> : la cartographie des entreprises et contrats qui construisent l'appareil de surveillance.</p>
-        <div class="hub-card-arrow" aria-hidden="true">Cartographier →</div>
-      </a>
-
-      <a href="pages/ideologies.html" class="hub-card" data-color="purple">
-        <span class="hub-card-number" aria-hidden="true">04</span>
-        <div class="hub-card-emoji" aria-hidden="true">🧠</div>
-        <h3>Idéologies sous-jacentes</h3>
-        <p><span class="gl-term" data-term="nrx" tabindex="0">NRx</span>, <span class="gl-term" data-term="dark_enlightenment" tabindex="0">Dark Enlightenment</span>, <span class="gl-term" data-term="eacc" tabindex="0">e/acc</span>, transhumanisme, <span class="gl-term" data-term="longtermisme" tabindex="0">longtermisme</span> : le corpus idéologique derrière les grandes décisions de la tech.</p>
-        <div class="hub-card-arrow" aria-hidden="true">Décrypter →</div>
-      </a>
-
-      <a href="pages/democraties.html" class="hub-card" data-color="green">
-        <span class="hub-card-number" aria-hidden="true">05</span>
-        <div class="hub-card-emoji" aria-hidden="true">⚖️</div>
-        <h3>Enjeux Démocratiques</h3>
-        <p>Capture d'État, érosion des contre-pouvoirs, privatisation du débat public, concentration informationnelle : ce que ça change pour nos sociétés.</p>
-        <div class="hub-card-arrow" aria-hidden="true">Analyser →</div>
-      </a>
-
-      <a href="#network-section" class="hub-card" data-color="orange">
-        <span class="hub-card-number" aria-hidden="true">06</span>
-        <div class="hub-card-emoji" aria-hidden="true">🕸️</div>
-        <h3>Carte des réseaux</h3>
-        <p>Carte de relations entre figures, entreprises, idéologies et institutions. Clique sur un acteur pour voir ce que le relie au reste du système.</p>
-        <div class="hub-card-arrow" aria-hidden="true">Visualiser ↓</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- PARCOURS -->
-<section aria-labelledby="reading-heading">
-  <div class="section">
-    <div class="section-header fade-in">
-      <span class="section-eyebrow">Parcours conseillés</span>
-      <h2 id="reading-heading" class="section-title">Trois façons d'entrer dans le sujet</h2>
-      <p class="section-lead">Le projet peut se lire comme une généalogie intellectuelle, comme une cartographie de pouvoir ou comme une enquête sur l'affaiblissement des démocraties.</p>
-    </div>
-    <div class="reading-grid fade-in">
-      <a href="pages/origines.html" class="reading-card">
-        <div class="reading-kicker">Parcours 01</div>
-        <h3>Partir du temps long</h3>
-        <p>Pour replacer le phénomène dans une histoire des techniques, du fascisme et de la critique de la modernité politique.</p>
-        <ul>
-          <li><strong>Origines</strong> pour la généalogie</li>
-          <li><strong>Idéologies</strong> pour les doctrines</li>
-          <li><strong>Figures</strong> pour les relais contemporains</li>
-        </ul>
-      </a>
-      <a href="pages/infrastructure.html" class="reading-card">
-        <div class="reading-kicker">Parcours 02</div>
-        <h3>Partir des infrastructures</h3>
-        <p>Pour voir comment le pouvoir s'incarne dans des contrats, des plateformes, des architectures logicielles et des chaînes d'investissement.</p>
-        <ul>
-          <li><strong>Infrastructure</strong> pour les dispositifs</li>
-          <li><strong>Carte des réseaux</strong> pour les connexions</li>
-          <li><strong>Figures</strong> pour les opérateurs</li>
-        </ul>
-      </a>
-      <a href="pages/democraties.html" class="reading-card">
-        <div class="reading-kicker">Parcours 03</div>
-        <h3>Partir des conséquences</h3>
-        <p>Pour comprendre ce que ces recompositions changent déjà à l'État de droit, au pluralisme médiatique et à l'espace public.</p>
-        <ul>
-          <li><strong>Démocraties</strong> pour les effets</li>
-          <li><strong>Infrastructure</strong> pour les mécanismes</li>
-          <li><strong>Origines</strong> pour le recul historique</li>
-        </ul>
-      </a>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- NETWORK -->
 <section id="network-section" aria-labelledby="network-heading">
-  <div class="network-section">
-    <div class="section-header fade-in" style="text-align:center">
-      <span class="section-eyebrow">Visualisation interactive</span>
-      <h2 id="network-heading" class="section-title" style="margin:0 auto">Réseau de pouvoir</h2>
-      <p class="section-lead" style="margin:var(--space-4) auto 0">Une carte statique, mais lisible: clique sur un acteur pour mettre en évidence ses connexions et comprendre ce qu'elles signifient politiquement.</p>
+  <div class="section" style="padding-top:0">
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">01 · Carte interactive</span>
+      <h2 id="network-heading" class="section-title">Le réseau de pouvoir</h2>
+      <p class="section-lead">Cliquez sur un nœud : ses connexions s'allument et le panneau explique ce qui relie les acteurs.</p>
     </div>
-    <div class="network-layout fade-in" style="margin-top:var(--space-8)">
+    <div class="network-layout fade-in">
       <div class="network-container">
         <canvas id="network-canvas" role="img" aria-label="Réseau de connexions entre acteurs du technofascisme"></canvas>
       </div>
@@ -620,7 +126,7 @@
         <div>
           <div class="card-label" id="network-detail-kicker">Lecture guidée</div>
           <h3 id="network-detail-title">Peter Thiel</h3>
-          <p id="network-detail-body">Sélectionne un nœud pour voir pourquoi il compte, quels acteurs lui sont reliés et par quel type de relation.</p>
+          <p id="network-detail-body">Sélectionnez un nœud pour voir pourquoi il compte et à quoi il est relié.</p>
         </div>
         <div class="network-links" id="network-detail-links"></div>
         <div class="network-cta">
@@ -629,40 +135,341 @@
       </aside>
     </div>
     <div class="network-legend fade-in">
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#c8102e"></div>
-        Figures politiques
+      <div class="legend-item"><div class="legend-dot" style="background:#c8102e"></div>Figures</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#00d4ff"></div>Entreprises</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Institutions</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Idéologies</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>Contre-pouvoirs</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTUALITE 2025-2026 -->
+<section id="actu" aria-labelledby="actu-heading">
+  <div class="section" style="padding-top:0">
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">02 · Chronologie</span>
+      <h2 id="actu-heading" class="section-title">Ce qui s'est passé depuis janvier 2025</h2>
+      <p class="section-lead">Vingt jalons sourcés, de l'investiture aux midterms. Faites défiler horizontalement.</p>
+    </div>
+
+    <div class="tl-h-wrap fade-in">
+      <div class="tl-h-controls">
+        <span class="tl-h-hint">← → pour naviguer · chaque carte renvoie à sa source</span>
+        <div class="tl-h-btns">
+          <button class="tl-h-btn" data-dir="prev" aria-label="Événements précédents"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg></button>
+          <button class="tl-h-btn" data-dir="next" aria-label="Événements suivants"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button>
+        </div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#00d4ff"></div>
-        Entreprises tech
+
+      <div class="tl-h" aria-label="Chronologie 2025-2026">
+
+        <article class="evt" data-type="capture">
+          <div class="evt-date">20 janv. 2025 <span class="evt-type">Capture</span></div>
+          <h3>Investiture : la tech au premier rang</h3>
+          <p>Musk, Bezos, Zuckerberg, Pichai et Altman devant le cabinet. Le DOGE est créé par décret le jour même ; Musk en prend la direction de fait.</p>
+          <a href="https://en.wikipedia.org/wiki/Department_of_Government_Efficiency" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="politique">
+          <div class="evt-date">14 fév. 2025 <span class="evt-type">Politique</span></div>
+          <h3>Vance à Munich : "la menace vient de l'intérieur"</h3>
+          <p>Le vice-président accuse les Européens de censure et de mise à l'écart des partis "populistes" — quelques jours avant les législatives allemandes.</p>
+          <a href="https://en.wikipedia.org/wiki/2025_JD_Vance_speech_at_the_Munich_Security_Conference" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">20 mars 2025 <span class="evt-type">Infrastructure</span></div>
+          <h3>Vers une base de données fédérale unifiée</h3>
+          <p>Décret "Eliminating Information Silos". Palantir est embarqué à l'IRS pour bâtir une "mega API" croisant les données fiscales avec le reste de l'État.</p>
+          <a href="https://www.nextgov.com/modernization/2025/06/democrats-press-palantir-about-reported-creation-irs-mega-database/406144/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">Avril 2025 <span class="evt-type">Infrastructure</span></div>
+          <h3>ImmigrationOS et le fisc au service d'ICE</h3>
+          <p>Palantir signe avec ICE (30 M$) un système de ciblage des expulsions. Le même mois, l'IRS accepte de partager les adresses des contribuables avec ICE.</p>
+          <a href="https://www.aclu.org/news/privacy-technology/palantir-deportation-roundup" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="capture">
+          <div class="evt-date">30 mai – 7 juin 2025 <span class="evt-type">Capture</span></div>
+          <h3>Musk quitte le gouvernement, puis rompt avec Trump</h3>
+          <p>Fin de son statut d'employé spécial. Une semaine plus tard, rupture publique sur la loi budgétaire. Le 5 juillet, il annonce un "America Party" — mort-né.</p>
+          <a href="https://en.wikipedia.org/wiki/Trump%E2%80%93Musk_feud" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="politique">
+          <div class="evt-date">1er – 4 juil. 2025 <span class="evt-type">Politique</span></div>
+          <h3>Le Sénat refuse le moratoire IA ; ICE reçoit 75 Mds$</h3>
+          <p>Par 99 voix contre 1, le Sénat retire l'interdiction faite aux États de réguler l'IA. Trois jours après, la loi budgétaire fait d'ICE la police la mieux dotée du pays.</p>
+          <a href="https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">8 – 14 juil. 2025 <span class="evt-type">Infrastructure</span></div>
+          <h3>Grok "MechaHitler", puis contrat Pentagone</h3>
+          <p>Pendant 16 heures, l'IA de Musk produit des contenus antisémites après un changement de consigne. Six jours plus tard, xAI obtient un contrat militaire jusqu'à 200 M$.</p>
+          <a href="https://www.forbes.com/sites/maryroeloffs/2025/07/14/department-of-defense-to-use-elon-musks-ai-software-grok/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">Août 2025 <span class="evt-type">Infrastructure</span></div>
+          <h3>Palantir : 10 Mds$ avec l'US Army</h3>
+          <p>Un accord-cadre sur dix ans consolide 75 contrats. Le même mois, a16z et alliés lancent "Leading the Future", super PAC pro-IA doté de plus de 100 M$.</p>
+          <a href="https://en.wikipedia.org/wiki/Leading_the_Future" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="idees">
+          <div class="evt-date">Sept. 2025 <span class="evt-type">Idées</span></div>
+          <h3>Thiel prêche l'Antéchrist ; Musk harangue Londres</h3>
+          <p>Quatre conférences privées de Thiel à San Francisco : l'Antéchrist serait un gouvernement mondial qui régule la technologie. Le 13, Musk lance "fight back or die" au rassemblement de Tommy Robinson.</p>
+          <a href="https://reason.com/2025/10/14/i-listened-to-over-7-hours-of-peter-thiels-leaked-antichrist-lectures-theyre-surprisingly-libertarian/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="politique">
+          <div class="evt-date">21 sept. 2025 <span class="evt-type">Politique</span></div>
+          <h3>Réconciliation Musk–Trump</h3>
+          <p>Au mémorial de Charlie Kirk, les deux hommes s'affichent ensemble. En décembre, Musk recommence à financer les républicains pour les midterms.</p>
+          <a href="https://axios.com/2025/12/16/elon-musk-donations-midterms-republicans-trump" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="capture">
+          <div class="evt-date">21 – 23 nov. 2025 <span class="evt-type">Capture</span></div>
+          <h3>Le DOGE "n'existe plus" ; l'IRS a violé la loi 42 695 fois</h3>
+          <p>L'OPM confirme la dissolution de fait du DOGE. Deux jours plus tôt, une juge fédérale bloque le partage des données fiscales avec ICE. Économies vérifiées : ~1,4 Md$ ; coût estimé : 135 Mds$.</p>
+          <a href="https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="europe">
+          <div class="evt-date">5 déc. 2025 <span class="evt-type">Europe</span></div>
+          <h3>Première amende DSA : 120 M€ contre X</h3>
+          <p>Coche bleue trompeuse, registre publicitaire opaque, accès refusé aux chercheurs. Musk répond qu'il faut "abolir l'UE".</p>
+          <a href="https://www.cnbc.com/2025/12/05/elon-musks-x-fined-140-million-by-european-commission.html" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="politique">
+          <div class="evt-date">11 déc. 2025 <span class="evt-type">Politique</span></div>
+          <h3>Décret : l'État fédéral contre les lois IA des États</h3>
+          <p>Ce que le Sénat avait refusé passe par décret : task force du DOJ pour attaquer les lois étatiques, fonds fédéraux conditionnés.</p>
+          <a href="https://www.mayerbrown.com/en/insights/publications/2025/12/president-trump-issues-executive-order-on-ensuring-a-national-policy-framework-for-artificial-intelligence" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="europe">
+          <div class="evt-date">23 déc. 2025 <span class="evt-type">Europe</span></div>
+          <h3>Washington interdit de visa Thierry Breton</h3>
+          <p>L'ex-commissaire, "cerveau" du DSA, et quatre responsables d'ONG anti-haine sont bannis du territoire américain. Macron dénonce "intimidation et coercition".</p>
+          <a href="https://www.cnbc.com/2025/12/24/us-bans-visas-for-ex-eu-commissioner-over-alleged-censorship.html" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">Janv. 2026 <span class="evt-type">Infrastructure</span></div>
+          <h3>Deepfakes Grok ; Medicaid au service d'ICE</h3>
+          <p>Grok génère ~3 millions d'images sexualisées non consenties en quelques jours ; enquêtes UE et Ofcom. Fortune révèle l'outil ELITE de Palantir exploitant les adresses Medicaid.</p>
+          <a href="https://www.fortune.com/2026/01/26/ice-allegedly-uses-palantir-tool-tracking-medicaid-data" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">2 fév. 2026 <span class="evt-type">Infrastructure</span></div>
+          <h3>SpaceX absorbe xAI (et donc X)</h3>
+          <p>Fusées, satellites Starlink, IA et réseau social dans une seule entité valorisée ~1 250 Mds$. Une chaîne intégrée sans précédent entre infrastructure militaire et espace public.</p>
+          <a href="https://www.cnn.com/2026/02/02/tech/spacex-acquires-xai-elon-musk" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="idees">
+          <div class="evt-date">Mars 2026 <span class="evt-type">Idées</span></div>
+          <h3>Thiel à Rome contre le "pape woke"</h3>
+          <p>Nouveau cycle de conférences sur l'Antéchrist. Thiel attaque Léon XIV et s'inquiète que Vance soit "trop proche du pape". Les universités catholiques se désolidarisent.</p>
+          <a href="https://edition.cnn.com/2026/03/16/europe/peter-thiel-antichrist-lectures-rome-intl" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="politique">
+          <div class="evt-date">Avril 2026 <span class="evt-type">Politique</span></div>
+          <h3>xAI attaque le Colorado, le DOJ s'y joint</h3>
+          <p>Première intervention fédérale contre une loi IA d'État. Le Colorado suspend puis vide sa loi de son obligation de non-discrimination. La cour d'appel rend au DOGE l'accès aux données Social Security.</p>
+          <a href="https://www.axios.com/2026/04/24/justice-department-joins-xai-challenge-colorado-ai-law" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">12 juin 2026 <span class="evt-type">Infrastructure</span></div>
+          <h3>IPO SpaceX : ~1 750 Mds$</h3>
+          <p>La plus grosse introduction en bourse de l'histoire. Musk devient, selon les estimations, le premier individu à dépasser 1 000 Mds$ de fortune. Anduril vaut 61 Mds$ depuis mai.</p>
+          <a href="https://www.cnbc.com/2026/06/03/elon-musks-net-worth-poised-to-sail-past-1-trillion-in-spacex-ipo.html" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="infra">
+          <div class="evt-date">3 août 2026 <span class="evt-type">Infrastructure</span></div>
+          <h3>Palantir : +93 % ; Karp traite les labos IA de "marxistes"</h3>
+          <p>1,94 Md$ de revenus trimestriels, 8,15 Mds$ attendus sur l'année. Le PDG attaque OpenAI et Anthropic, "effing insane", pour leur position sur la régulation.</p>
+          <a href="https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
+        <article class="evt" data-type="capture">
+          <div class="evt-date">31 août 2026 <span class="evt-type">Capture</span></div>
+          <h3>2 411 polices locales déléguées à ICE ; midterms à 2 mois</h3>
+          <p>Les accords 287(g) couvrent 39 États (1 372 en janvier). Dépenses de campagne record : Fairshake (crypto) 193 M$, Leading the Future (IA) 125 M$, Musk ≥ 85 M$.</p>
+          <a href="https://www.ice.gov/identify-and-arrest/287g" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        </article>
+
       </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#f59e0b"></div>
-        Institutions
+
+      <div class="tl-h-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#e8203e"></div>Capture d'État</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#00d4ff"></div>Infrastructure</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Politique</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div>Idées</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>Europe</div>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#7c3aed"></div>
-        Idéologies
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<section aria-labelledby="stats-heading">
+  <div class="section" style="padding-top:0">
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">03 · Ordres de grandeur</span>
+      <h2 id="stats-heading" class="section-title">Huit chiffres</h2>
+      <p class="section-lead">Survolez pour la source. Aucun ne prouve une thèse ; ensemble, ils donnent l'échelle.</p>
+    </div>
+    <div class="stats-grid fade-in" style="margin:0">
+      <div class="stat-card stat-red" data-source="Palantir, résultats T2 2026 (3 août 2026) — guidance annuelle 8,15 Mds$">
+        <div class="stat-number" data-target="8.15" data-decimals="2" data-suffix=" Mds$">0</div>
+        <div class="stat-label">Revenus Palantir attendus en 2026 (+93 % au T2)</div>
       </div>
+      <div class="stat-card stat-cyan" data-source="US Army Enterprise Agreement, août 2025 — jusqu'à 10 Mds$ sur 10 ans">
+        <div class="stat-number" data-target="10" data-suffix=" Mds$">0</div>
+        <div class="stat-label">Accord-cadre Palantir / US Army sur dix ans</div>
+      </div>
+      <div class="stat-card stat-amber" data-source="One Big Beautiful Bill Act, 4 juillet 2025 — analyse Brennan Center">
+        <div class="stat-number" data-target="75" data-suffix=" Mds$">0</div>
+        <div class="stat-label">Budget ICE sur quatre ans, dont 45 Mds$ de détention</div>
+      </div>
+      <div class="stat-card stat-red" data-source="ICE, page 287(g), relevé du 31 août 2026 (1 372 en janvier)">
+        <div class="stat-number" data-target="2411" data-suffix="">0</div>
+        <div class="stat-label">Accords 287(g) déléguant des pouvoirs d'ICE à des polices locales</div>
+      </div>
+      <div class="stat-card stat-green" data-source="Partnership for Public Service (coût FY2025) vs. vérification Politico des économies">
+        <div class="stat-number" data-target="135" data-suffix=" Mds$">0</div>
+        <div class="stat-label">Coût estimé du DOGE — pour ~1,4 Md$ d'économies vérifiées</div>
+      </div>
+      <div class="stat-card stat-cyan" data-source="Commission européenne, décision DSA du 5 décembre 2025">
+        <div class="stat-number" data-target="120" data-suffix=" M€">0</div>
+        <div class="stat-label">Première amende DSA de l'histoire, contre X</div>
+      </div>
+      <div class="stat-card stat-amber" data-source="CNBC / Nasdaq — IPO SpaceX du 12 juin 2026 (xAI et X inclus)">
+        <div class="stat-number" data-target="1750" data-suffix=" Mds$">0</div>
+        <div class="stat-label">Valorisation de SpaceX (Starlink + xAI + X) à l'introduction en bourse</div>
+      </div>
+      <div class="stat-card stat-green" data-source="FEC / presse (CNBC, US News), août 2026 — Fairshake 193 M$, Leading the Future 125 M$">
+        <div class="stat-number" data-target="318" data-suffix=" M$">0</div>
+        <div class="stat-label">Super PACs crypto + IA pour les midterms 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPITRES -->
+<section id="chapters" aria-labelledby="chapters-heading">
+  <div class="section" style="padding-top:0">
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">04 · Chapitres</span>
+      <h2 id="chapters-heading" class="section-title">Cinq entrées</h2>
+    </div>
+    <div class="hub-grid fade-in" style="margin-top:0">
+      <a href="pages/origines.html" class="hub-card" data-color="red">
+        <span class="hub-card-number" aria-hidden="true">01</span>
+        <div class="hub-card-emoji" aria-hidden="true">🏛️</div>
+        <h3>Origines</h3>
+        <p>Du Japon impérial et d'IBM à Pasolini, Eco et l'idéologie californienne : la généalogie du mot.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Lire →</div>
+      </a>
+      <a href="pages/figures.html" class="hub-card" data-color="cyan">
+        <span class="hub-card-number" aria-hidden="true">02</span>
+        <div class="hub-card-emoji" aria-hidden="true">👤</div>
+        <h3>Figures</h3>
+        <p>Huit fiches : Musk, Thiel, Andreessen, Yarvin, Vance, Karp, Sacks, Srinivasan. Filtrables par rôle.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Profils →</div>
+      </a>
+      <a href="pages/infrastructure.html" class="hub-card" data-color="amber">
+        <span class="hub-card-number" aria-hidden="true">03</span>
+        <div class="hub-card-emoji" aria-hidden="true">🔬</div>
+        <h3>Infrastructure</h3>
+        <p>Palantir, ICE, SpaceX-xAI, Anduril, Clearview, DOGE : les contrats et les outils.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Cartographier →</div>
+      </a>
+      <a href="pages/ideologies.html" class="hub-card" data-color="purple">
+        <span class="hub-card-number" aria-hidden="true">04</span>
+        <div class="hub-card-emoji" aria-hidden="true">🧠</div>
+        <h3>Idéologies</h3>
+        <p>NRx, e/acc, longtermisme, Network State, libertarianisme autoritaire : six courants, un point commun.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Décrypter →</div>
+      </a>
+      <a href="pages/democraties.html" class="hub-card" data-color="green">
+        <span class="hub-card-number" aria-hidden="true">05</span>
+        <div class="hub-card-emoji" aria-hidden="true">⚖️</div>
+        <h3>Démocraties</h3>
+        <p>Sept vecteurs d'érosion, un tableau de bord d'indicateurs réels, et ce qui résiste.</p>
+        <div class="hub-card-arrow" aria-hidden="true">Analyser →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BIBLIOTHEQUE -->
+<section aria-labelledby="biblio-heading">
+  <div class="section" style="padding-top:0">
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">05 · Bibliothèque 2025-2026</span>
+      <h2 id="biblio-heading" class="section-title">Six livres pour comprendre</h2>
+    </div>
+    <div class="resource-list fade-in">
+      <a href="https://multinationales.org/fr/enquetes/extreme-tech/tesquet-hadjadji-techno-fascisme-doge-palantir-thiel" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2025 · FR</span>
+        <div><div class="resource-title">Nastasia Hadjadji &amp; Olivier Tesquet — <em>Apocalypse Nerds. Comment les techno-fascistes ont pris le pouvoir</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.fnac.com/a22216850/Norman-Ajari-Technofascisme" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2025 · FR</span>
+        <div><div class="resource-title">Norman Ajari — <em>Technofascisme. Le nouveau rêve de la suprématie blanche</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://en.wikipedia.org/wiki/Hayek's_Bastards" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2025 · EN</span>
+        <div><div class="resource-title">Quinn Slobodian — <em>Hayek's Bastards. Race, Gold, IQ, and the Capitalism of the Far Right</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.foreignaffairs.com/reviews/gilded-rage-elon-musk-and-radicalization-silicon-valley" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2025 · EN</span>
+        <div><div class="resource-title">Jacob Silverman — <em>Gilded Rage. Elon Musk and the Radicalization of Silicon Valley</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.nybooks.com/articles/2026/07/23/space-oddity-muskism-slobodian-tarnoff/" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2026 · EN</span>
+        <div><div class="resource-title">Quinn Slobodian &amp; Ben Tarnoff — <em>Muskism. A Guide for the Perplexed</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.democracynow.org/2026/8/17/gil_duran_nerd_reich" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">2026 · EN</span>
+        <div><div class="resource-title">Gil Durán — <em>The Nerd Reich. Silicon Valley Fascism and the War on Democracy</em></div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- QUOTE -->
 <section aria-label="Citation">
-  <div class="section">
+  <div class="section" style="padding-top:0">
     <div class="quote-block fade-in">
-      <blockquote>
-        "Nous verrons peut-être émerger un populisme télévisuel ou Internet, où la réaction émotionnelle d'un groupe choisi de citoyens sera présentée et acceptée comme la Voix du Peuple."
-      </blockquote>
-      <cite>Umberto Eco, Ur-Fascism (Fascisme Éternel), 1995 — The New York Review of Books</cite>
+      <blockquote>"Nous verrons peut-être émerger un populisme télévisuel ou Internet, où la réaction émotionnelle d'un groupe choisi de citoyens sera présentée et acceptée comme la Voix du Peuple."</blockquote>
+      <cite>Umberto Eco, Ur-Fascism, 1995</cite>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer" style="margin-top:0">
   <div class="footer-inner">
     <div class="footer-logo">TECHNO<span>FASCISME</span> — Infographie pédagogique</div>
     <nav class="footer-nav" aria-label="Navigation pied de page">
@@ -673,9 +480,7 @@
       <a href="pages/democraties.html">Démocraties</a>
     </nav>
     <p class="footer-credit">
-      Réalisé par <a href="https://tristan.pro" target="_blank" rel="noopener noreferrer" class="footer-author">Tristan Mendès France</a> — 
-      Sources : New Yorker, Philosophie Magazine, The Guardian, TNI, Jacobin, EFF, Wired, Time · 
-      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      Réalisé par <a href="https://tristan.pro" target="_blank" rel="noopener noreferrer" class="footer-author">Tristan Mendès France</a> · Dernière mise à jour : septembre 2026 · Sources citées carte par carte
     </p>
   </div>
 </footer>
