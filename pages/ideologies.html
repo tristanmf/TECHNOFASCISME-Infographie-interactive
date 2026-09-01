@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
-<meta name="generator" content="Perplexity Computer">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Idéologies — TECHNOFASCISME</title>
+<meta name="description" content="NRx, e/acc, longtermisme, transhumanisme, libertarianisme autoritaire, accélérationnisme : six courants, un point commun. Et ce qu'ils sont devenus en 2025-2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,10 +12,10 @@
 </head>
 <body>
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo">
-      <svg class="logo-icon" viewBox="0 0 28 28" fill="none">
+      <svg class="logo-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="26" height="26" rx="4" stroke="#c8102e" stroke-width="1.5"/>
         <path d="M7 14 L14 7 L21 14 L14 21 Z" stroke="#c8102e" stroke-width="1.5" fill="rgba(200,16,46,0.15)"/>
         <circle cx="14" cy="14" r="2.5" fill="#00d4ff"/>
@@ -36,7 +26,7 @@
       </svg>
       TECHNO<span class="accent">FASCISME</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Sections">
       <a href="../index.html">Accueil</a>
       <a href="origines.html">Origines</a>
       <a href="figures.html">Figures</a>
@@ -44,7 +34,7 @@
       <a href="ideologies.html" class="active">Idéologies</a>
       <a href="democraties.html">Démocraties</a>
     </nav>
-    <button class="nav-mobile-btn" aria-label="Menu">
+    <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/>
       </svg>
@@ -56,68 +46,56 @@
   <p class="page-header-eyebrow">
     <a href="../index.html">Accueil</a>
     <span>/</span>
-    Idéologies sous-jacentes
+    04 · Idéologies
   </p>
   <h1>Le corpus intellectuel</h1>
-  <p>Derrière les plateformes, les manifestes et les prises de position publiques, un ensemble de doctrines qui ne se superposent pas totalement mais se croisent souvent. Cliquez pour approfondir chaque courant.</p>
+  <p>Six courants qui ne se confondent pas mais partagent un ennemi : la limite démocratique. Cliquez pour approfondir.</p>
 </div>
 
 <main>
-  <div class="section">
-
-    <div class="card fade-in" style="margin-bottom: var(--space-12); border-left: 3px solid var(--color-cyan)">
-      <div class="card-label">Clé de lecture</div>
-      <h3>Des familles d'idées, pas un catéchisme unique</h3>
-      <p>Cette page ne soutient pas que toutes ces doctrines seraient interchangeables. Elle montre plutôt comment certaines d'entre elles peuvent se rencontrer autour d'un même rejet des limites démocratiques, d'une fascination pour l'accélération et d'une confiance très forte dans l'élite technique.</p>
-    </div>
-
-    <div class="section-header fade-in">
-      <span class="section-eyebrow">Cartographie idéologique</span>
-      <h2 class="section-title">Six courants, un projet</h2>
-      <p class="section-lead">Ces idéologies ne sont pas étanches: elles partagent parfois des auteurs, des mots d'ordre et des ennemis communs. Leur point de rencontre tient souvent à une forte défiance envers l'égalitarisme démocratique.</p>
-    </div>
+  <div class="section" style="padding-top:0">
 
     <div class="ideology-grid fade-in">
 
       <div class="ideology-card" data-ideology="nrx" onclick="ModalSystem.open('ideo-nrx')" role="button" tabindex="0">
         <div class="ideology-icon">👑</div>
-        <h3>NRx — Néo-Réactionnaire</h3>
-        <p><span class="gl-term" data-term="dark_enlightenment" tabindex="0">Dark Enlightenment</span> · Curtis Yarvin · Nick Land. La démocratie comme échec. Le gouvernement-entreprise comme solution. L'élite tech comme classe dirigeante légitime.</p>
+        <h3>NRx — Néo-réaction</h3>
+        <p>Yarvin, Land, <span class="gl-term" data-term="dark_enlightenment" tabindex="0">Dark Enlightenment</span>. La démocratie est un échec ; l'État doit être géré comme une entreprise par un PDG-monarque ; l'élite technique est la classe légitime.</p>
         <div style="margin-top:var(--space-4)"><span class="tag tag-red">Anti-démocratie</span></div>
       </div>
 
       <div class="ideology-card" data-ideology="eacc" onclick="ModalSystem.open('ideo-eacc')" role="button" tabindex="0">
         <div class="ideology-icon">⚡</div>
-        <h3>e/acc — Effective Accelerationism</h3>
-        <p>Accélérer fortement le développement technologique. Le principe de précaution y est souvent présenté comme une entrave. Les coûts sociaux présents y sont volontiers minimisés au nom des bénéfices futurs.</p>
+        <h3>e/acc — Accélérationnisme effectif</h3>
+        <p>Accélérer sans entrave. Le principe de précaution est "l'ennemi", les régulateurs sont "ennemis du progrès". Le manifeste d'Andreessen (2023) en est le texte fondateur.</p>
         <div style="margin-top:var(--space-4)"><span class="tag tag-cyan">Accélération</span></div>
       </div>
 
       <div class="ideology-card" data-ideology="ea" onclick="ModalSystem.open('ideo-ea')" role="button" tabindex="0">
         <div class="ideology-icon">🔭</div>
-        <h3>EA &amp; Longtermisme</h3>
-        <p><span class="gl-term" data-term="ea" tabindex="0">Effective Altruism</span> &amp; <span class="gl-term" data-term="longtermisme" tabindex="0">longtermisme</span> : l'avenir lointain de l'humanité, voire des entités numériques futures, peut y primer sur les souffrances présentes. Cette hiérarchie temporelle peut ouvrir la voie à des arbitrages très radicaux.</p>
+        <h3>Longtermisme</h3>
+        <p>Dérivé de l'<span class="gl-term" data-term="ea" tabindex="0">Effective Altruism</span> : les milliards d'humains futurs priment sur les vivants. Une logique qui peut justifier n'importe quel sacrifice présent au nom d'un futur immense.</p>
         <div style="margin-top:var(--space-4)"><span class="tag tag-amber">Futurisme</span></div>
       </div>
 
       <div class="ideology-card" data-ideology="trans" onclick="ModalSystem.open('ideo-trans')" role="button" tabindex="0">
         <div class="ideology-icon">🧬</div>
         <h3>Transhumanisme</h3>
-        <p>Dépasser les limites biologiques humaines par la technologie. Dans ses versions les plus hiérarchiques, ce courant imagine une humanité augmentée où l'accès aux capacités techniques redessine les rapports de pouvoir.</p>
+        <p>Dépasser la biologie par la technique. Dans sa version hiérarchique, une humanité augmentée — pour ceux qui peuvent payer — et une majorité "standard" déclassée.</p>
         <div style="margin-top:var(--space-4)"><span class="tag" style="color:#a855f7;background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.3)">Post-humain</span></div>
       </div>
 
       <div class="ideology-card" data-ideology="libert" onclick="ModalSystem.open('ideo-libert')" role="button" tabindex="0">
         <div class="ideology-icon">🗽</div>
-        <h3>Libertarianisme de droite</h3>
-        <p>L'État comme ennemi. Le marché libre comme seul régulateur légitime. Les impôts comme "vol". Mais un libertarianisme qui s'accommode du pouvoir autoritaire dès lors qu'il est aux mains des "bons".</p>
+        <h3>Libertarianisme autoritaire</h3>
+        <p>L'État comme ennemi, le marché comme seul juge — mais un pouvoir fort accepté dès qu'il est entre "bonnes mains". Liberté pour les entreprises, contrôle pour les populations.</p>
         <div style="margin-top:var(--space-4)"><span class="tag tag-green">Anti-État</span></div>
       </div>
 
       <div class="ideology-card" data-ideology="acc" onclick="ModalSystem.open('ideo-acc')" role="button" tabindex="0">
         <div class="ideology-icon">💀</div>
-        <h3>Accélérationnisme</h3>
-        <p>Chez Nick Land et d'autres auteurs, la crise et la déstabilisation sont pensées comme des accélérateurs de rupture. Certaines de ces formulations ont ensuite circulé dans des milieux d'extrême droite plus radicalisés.</p>
+        <h3>Accélérationnisme radical</h3>
+        <p>Chez Nick Land, la crise et l'effondrement sont des accélérateurs souhaitables. Ces formulations ont circulé jusque dans l'extrême droite violente. À distinguer soigneusement de l'e/acc.</p>
         <div style="margin-top:var(--space-4)"><span class="tag tag-red">Extrême</span></div>
       </div>
 
@@ -125,57 +103,106 @@
 
     <hr class="section-divider">
 
-    <!-- CONVERGENCES -->
-    <div class="section-header fade-in">
+    <!-- CONVERGENCE -->
+    <div class="section-header tight fade-in">
       <span class="section-eyebrow">Synthèse</span>
-      <h2 class="section-title">La convergence idéologique</h2>
+      <h2 class="section-title">Le point commun</h2>
+      <p class="section-lead">Ces courants divergent sur presque tout — sauf sur trois convictions.</p>
     </div>
 
-    <div class="two-col fade-in">
-      <div class="prose">
-        <p>Ces courants partagent souvent un noyau commun : la conviction que la <strong>démocratie libérale est inefficace</strong>, que les procédures collectives freinent les décisions jugées nécessaires, et que l'élite technique serait mieux placée pour conduire l'histoire.</p>
-        <p>La singularité du moment tient à la manière dont ces idéologies, nées dans des cercles marginaux d'internet, ont trouvé une traduction institutionnelle au plus haut niveau de l'État américain, avec des conséquences géopolitiques planétaires.</p>
-        <p>Nick Land synthétise cette convergence en affirmant que la démocratie et l'égalitarisme "ralentissent" l'accélération technologique et doivent donc être dépassés. Son travail a influencé à la fois le mouvement e/acc et l'accélérationnisme violent — une porosité idéologique qui mérite d'être nommée.</p>
+    <div class="brief-grid fade-in">
+      <div class="brief" style="border-left:3px solid var(--color-red-bright)">
+        <div class="card-label" style="color:var(--color-red-bright)">01</div>
+        <h3>La démocratie est un obstacle</h3>
+        <p>Procédures, contre-pouvoirs, égalité des voix : autant de "décélérateurs". Thiel l'écrit dès 2009 ; Land en fait une théorie ; le DOGE en a été la mise en pratique.</p>
       </div>
-      <div>
-        <div class="quote-block" style="margin-bottom:var(--space-6)">
-          <blockquote>"Beside the speed machine, or industrial capitalism, there is an ever more perfectly weighted decelerator [...] comically, the fabrication of this braking mechanism is proclaimed as progress."</blockquote>
-          <cite>Nick Land — sur la démocratie comme frein à la "technocapital singularity"</cite>
-        </div>
-        <div class="quote-block cyan">
-          <blockquote>"Technology is the engine of everything good in the world. And I mean everything. And therefore the enemy of progress is the enemy of technology, the enemy of humanity."</blockquote>
-          <cite>Marc Andreessen — Techno-Optimist Manifesto, 2023</cite>
-        </div>
+      <div class="brief" style="border-left:3px solid var(--color-cyan)">
+        <div class="card-label" style="color:var(--color-cyan)">02</div>
+        <h3>L'élite technique est la solution</h3>
+        <p>Ceux qui construisent savent mieux que ceux qui votent. L'héritage de l'<em>IQ bigotry</em> de Stanford, reformulé en méritocratie de fondateurs.</p>
+      </div>
+      <div class="brief" style="border-left:3px solid var(--color-amber)">
+        <div class="card-label" style="color:var(--color-amber)">03</div>
+        <h3>La crise est une opportunité</h3>
+        <p>Effondrement, singularité, Antéchrist, guerre technologique avec la Chine : chaque courant a son apocalypse, et chacune justifie de suspendre les règles.</p>
+      </div>
+    </div>
+
+    <div class="two-col fade-in" style="margin-top:var(--space-8)">
+      <div class="quote-block" style="margin:0">
+        <blockquote>"Beside the speed machine, or industrial capitalism, there is an ever more perfectly weighted decelerator […] comically, the fabrication of this braking mechanism is proclaimed as progress."</blockquote>
+        <cite>Nick Land — la démocratie comme frein</cite>
+      </div>
+      <div class="quote-block cyan" style="margin:0">
+        <blockquote>"Technology is the engine of everything good in the world. And I mean everything. And therefore the enemy of progress is the enemy of technology, the enemy of humanity."</blockquote>
+        <cite>Marc Andreessen — Techno-Optimist Manifesto, 2023</cite>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 2025-2026 -->
+    <div class="section-header tight fade-in">
+      <span class="section-eyebrow">2025-2026</span>
+      <h2 class="section-title">Les idées à l'épreuve du pouvoir</h2>
+      <p class="section-lead">Ce que sont devenues ces doctrines une fois leurs porteurs aux commandes.</p>
+    </div>
+
+    <div class="brief-grid fade-in">
+      <div class="brief">
+        <div class="card-label">Thiel · théologie politique</div>
+        <h3>L'<span class="gl-term" data-term="antechrist" tabindex="0">Antéchrist</span> régule</h3>
+        <p>Conférences à San Francisco (2025) puis Rome (2026) : l'Antéchrist serait un gouvernement mondial qui, au nom des peurs (IA, climat, nucléaire), bride la technologie. Réguler devient un péché. Le pape est "woke".</p>
+      </div>
+      <div class="brief">
+        <div class="card-label">Karp · République technologique</div>
+        <h3>La Valley doit servir l'État</h3>
+        <p>Dans son livre de 2025, Karp reproche à la tech d'avoir fui la défense. En 2026, il traite OpenAI et Anthropic de "marxistes" pour leur prudence : l'accélération est désormais patriotique.</p>
+      </div>
+      <div class="brief">
+        <div class="card-label">Srinivasan · Network State</div>
+        <h3>La sécession cherche un territoire</h3>
+        <p>Conférence à Singapour (oct. 2025, 8 000 inscrits). La Network School est expulsée de Malaisie, signe avec le Kazakhstan. Les "Freedom Cities" promises par Trump n'ont aucune existence concrète.</p>
+      </div>
+      <div class="brief">
+        <div class="card-label">Nouveaux mots</div>
+        <h3><span class="gl-term" data-term="broligarchie" tabindex="0">Broligarchie</span>, Muskism</h3>
+        <p>La journaliste Carole Cadwalladr forge "broligarchy" (janv. 2025). Slobodian et Tarnoff décrivent le "Muskism" (2026) : un anti-étatisme qui vit de contrats publics. Le vocabulaire critique rattrape son objet.</p>
       </div>
     </div>
 
     <hr class="section-divider">
 
     <!-- RESOURCES -->
-    <div class="section-header fade-in">
+    <div class="section-header tight fade-in">
       <span class="section-eyebrow">Pour aller plus loin</span>
-      <h2 class="section-title">Articles &amp; analyses</h2>
+      <h2 class="section-title">Sources</h2>
     </div>
 
     <div class="resource-list fade-in">
-      <a href="https://en.wikipedia.org/wiki/Dark_Enlightenment" target="_blank" rel="noopener noreferrer" class="resource-item">
-        <span class="resource-source">Wikipedia</span>
-        <div><div class="resource-title">Dark Enlightenment — Analyse complète du mouvement NRx</div></div>
-        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
-      </a>
-      <a href="https://www.platformspace.net/home/nrx-a-brief-guide-for-the-perplexed" target="_blank" rel="noopener noreferrer" class="resource-item">
-        <span class="resource-source">PLATFORM</span>
-        <div><div class="resource-title">NRx: A Brief Guide for the Perplexed — Introduction au mouvement néo-réactionnaire</div></div>
-        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
-      </a>
       <a href="https://pmarca.substack.com/p/the-techno-optimist-manifesto" target="_blank" rel="noopener noreferrer" class="resource-item">
-        <span class="resource-source">Andreessen</span>
-        <div><div class="resource-title">The Techno-Optimist Manifesto — Texte original, 2023 (source primaire)</div></div>
+        <span class="resource-source">Primaire</span>
+        <div><div class="resource-title">The Techno-Optimist Manifesto — Marc Andreessen, 2023</div></div>
         <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
       </a>
-      <a href="https://www.tni.org/en/article/the-rise-of-the-techno-tyrants" target="_blank" rel="noopener noreferrer" class="resource-item">
+      <a href="https://reason.com/2025/10/14/i-listened-to-over-7-hours-of-peter-thiels-leaked-antichrist-lectures-theyre-surprisingly-libertarian/" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">Reason</span>
+        <div><div class="resource-title">Sept heures de conférences de Thiel sur l'Antéchrist — analyse, 2025</div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://time.com/7269166/dark-enlightenment-history-essay/" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">Time</span>
+        <div><div class="resource-title">What We Must Understand About the Dark Enlightenment Movement — 2025</div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.nybooks.com/articles/2026/07/23/space-oddity-muskism-slobodian-tarnoff/" target="_blank" rel="noopener noreferrer" class="resource-item">
+        <span class="resource-source">NYRB</span>
+        <div><div class="resource-title">Space Oddity — recension de <em>Muskism</em> (Slobodian &amp; Tarnoff), 2026</div></div>
+        <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
+      </a>
+      <a href="https://www.tni.org/files/2026-02/State-of-Power-2026-Chapter8.pdf" target="_blank" rel="noopener noreferrer" class="resource-item">
         <span class="resource-source">TNI</span>
-        <div><div class="resource-title">Rise of the Techno-Tyrants — Analyse critique des idéologies tech réactionnaires</div></div>
+        <div><div class="resource-title">State of Power 2026 — chap. 8, The Rise of the Techno-Tyrants</div></div>
         <svg class="resource-ext" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9m-5-6h6m0 0v6m0-6L7 9"/></svg>
       </a>
     </div>
@@ -183,43 +210,42 @@
     <nav class="chapter-nav" aria-label="Navigation entre chapitres">
       <a href="infrastructure.html" class="chapter-nav-card prev">
         <span class="chapter-nav-direction">← Chapitre précédent</span>
-        <span class="chapter-nav-title">Infrastructure &amp; Secteurs</span>
-        <span class="chapter-nav-desc">Palantir, Clearview AI, Anduril, DOGE : les dispositifs matériels du pouvoir</span>
+        <span class="chapter-nav-title">03 · Infrastructure</span>
+        <span class="chapter-nav-desc">Palantir, ICE, SpaceX-xAI, Anduril, DOGE</span>
       </a>
       <a href="democraties.html" class="chapter-nav-card next">
         <span class="chapter-nav-direction">Chapitre suivant →</span>
-        <span class="chapter-nav-title">Enjeux Démocratiques</span>
-        <span class="chapter-nav-desc">Capture d'État, érosion des contre-pouvoirs, surveillance généralisée : ce que ça change</span>
+        <span class="chapter-nav-title">05 · Démocraties</span>
+        <span class="chapter-nav-desc">Sept vecteurs d'érosion, un tableau de bord, ce qui résiste</span>
       </a>
     </nav>
 
   </div>
 </main>
 
-<!-- IDEOLOGY MODALS -->
+<!-- ═══════════ MODALES ═══════════ -->
+
 <div class="modal-backdrop" id="modal-ideo-nrx" role="dialog" aria-modal="true" aria-labelledby="modal-nrx-title">
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-nrx-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Néo-Réactionnaire (NRx)</h2>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-red-bright);letter-spacing:0.05em;margin-top:var(--space-1)">Dark Enlightenment · Yarvin · Land</p>
+        <h2 id="modal-nrx-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Néo-réaction (NRx)</h2>
+        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-red-bright);letter-spacing:0.05em;margin-top:var(--space-1)">Yarvin · Land · Dark Enlightenment</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>Origines et doctrine</h4>
-      <p>Le mouvement néo-réactionnaire (NRx) émerge dans les années 2000 autour du blog de Curtis Yarvin. Il se présente comme une réaction raisonnée contre les "illusions progressistes" de l'Occident moderne : démocratie, égalitarisme, multiculturalisme. Son postulat de base : ces idéaux produisent de l'inefficacité et de la décadence.</p>
-      <h4>La Cathédrale</h4>
-      <p>Yarvin nomme "<span class="gl-term" data-term="cathedral" tabindex="0">La Cathédrale</span>" l'alliance informelle entre grands médias, universités et bureaucratie administrative — ce qu'il considère comme le véritable pouvoir réel, derrière la façade électorale. Ce système doit, selon lui, être démantelé pour laisser place à un pouvoir plus "honnête" parce que débarrassé de la fiction démocratique.</p>
-      <h4>Le Néocaméralisme</h4>
-      <p>La solution de Yarvin : le <span class="gl-term" data-term="neocameralisme" tabindex="0">néocaméralisme</span>, où l'État est géré comme une entreprise. Les "citoyens" deviennent des actionnaires. Le dirigeant est un PDG avec des pouvoirs absolus mais une accountability économique. Les tribunaux et contre-pouvoirs traditionnels sont remplacés par la "discipline du marché".</p>
-      <h4>Nick Land &amp; l'accélération</h4>
-      <p>Philosophe britannique, Nick Land a élaboré le concept de "Dark Enlightenment" en appliquant l'accélérationnisme à la vision de Yarvin. Pour Land, la démocratie est un "décélérateur" qui freine l'évolution technologique vers la singularité. Seule une rupture radicale peut "libérer" le potentiel de l'humanité.</p>
+      <h4>Le diagnostic</h4>
+      <p>Né en 2007 sur le blog de Curtis Yarvin : démocratie, égalitarisme et multiculturalisme produisent inefficacité et décadence. Le vrai pouvoir est la "<span class="gl-term" data-term="cathedral" tabindex="0">Cathédrale</span>" — médias, universités, bureaucratie — derrière la façade électorale.</p>
+      <h4>Le remède</h4>
+      <p>Le <span class="gl-term" data-term="neocameralisme" tabindex="0">néocaméralisme</span> : l'État comme entreprise, un PDG aux pouvoirs absolus, des citoyens-actionnaires, la "discipline du marché" à la place des tribunaux. Étape préalable : <span class="gl-term" data-term="rage" tabindex="0">RAGE</span>, renvoyer tous les fonctionnaires.</p>
+      <h4>Nick Land</h4>
+      <p>Philosophe britannique, il applique l'accélérationnisme à Yarvin dans <em>The Dark Enlightenment</em> (2012) : la démocratie "décélère" l'évolution technologique ; seule une rupture libère le potentiel de l'espèce.</p>
+      <h4>Où en est-on</h4>
+      <p>Vance se réclame de Yarvin ; Andreessen le dit "ami" ; le DOGE a appliqué RAGE. Le New York Times et le New Yorker ont fait de Yarvin une figure publique en 2025.</p>
       <div class="modal-links">
-        <a href="https://en.wikipedia.org/wiki/Dark_Enlightenment" target="_blank" rel="noopener noreferrer" class="modal-link">Wikipedia : Dark Enlightenment ↗</a>
-        <a href="https://www.platformspace.net/home/nrx-a-brief-guide-for-the-perplexed" target="_blank" rel="noopener noreferrer" class="modal-link">PLATFORM : NRx Guide ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Dark_Enlightenment" target="_blank" rel="noopener noreferrer" class="modal-link">Dark Enlightenment ↗</a>
+        <a href="https://newyorker.substack.com/p/curtis-yarvins-plot-against-america" target="_blank" rel="noopener noreferrer" class="modal-link">New Yorker : Yarvin ↗</a>
       </div>
     </div>
   </div>
@@ -229,22 +255,21 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-eacc-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Effective Accelerationism (e/acc)</h2>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);letter-spacing:0.05em;margin-top:var(--space-1)">Andreessen · Musk · Accélération sans limites</p>
+        <h2 id="modal-eacc-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">e/acc</h2>
+        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-cyan);letter-spacing:0.05em;margin-top:var(--space-1)">Andreessen · Musk · Accélération sans frein</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>Le manifeste de l'accélération</h4>
-      <p>Le mouvement e/acc ("effective accelerationism") se présente en opposition à l'EA (Effective Altruism) jugé trop frileux, et au "doomisme" inquiet des risques existentiels de l'IA. Sa thèse : il faut accélérer sans entraves réglementaires le développement technologique, car les bénéfices futurs dépasseront immensément les risques présents — quels qu'ils soient.</p>
-      <h4>Le Manifeste Techno-Optimiste comme texte fondateur</h4>
-      <p>Andreessen synthétise en 2023 la doctrine e/acc en attaquant les "ennemis du progrès" : principe de précaution, réglementation, altermondialisme, "safety culture" dans l'IA. Sa liste de "saints" du progrès inclut des figures controversées comme Nick Land.</p>
-      <h4>Lien avec Musk</h4>
-      <p>Musk a adopté le symbole "⚡" associé au mouvement e/acc dans sa biographie Twitter pendant une période. Ses positions sur la déréglementation de l'IA (opposition aux régulations européennes et américaines) sont cohérentes avec la doctrine e/acc.</p>
+      <h4>La thèse</h4>
+      <p>Contre l'Effective Altruism jugé frileux et contre les "doomers" de l'IA : accélérer sans entrave réglementaire, car les bénéfices futurs dépasseront immensément les risques présents — quels qu'ils soient.</p>
+      <h4>Le texte</h4>
+      <p>Le <em>Techno-Optimist Manifesto</em> d'Andreessen (2023) : principe de précaution, régulation, "safety culture" sont des "ennemis". Sa liste de "saints" inclut Nick Land. Musk a un temps affiché le symbole e/acc dans sa biographie X.</p>
+      <h4>Où en est-on</h4>
+      <p>L'e/acc est devenu politique publique : AI Action Plan (juillet 2025), décret de préemption des lois des États (décembre 2025), super PAC Leading the Future (125 M$). Le "doomer" à abattre a désormais un nom : Anthropic, que Karp qualifie de "marxiste".</p>
       <div class="modal-links">
-        <a href="https://pmarca.substack.com/p/the-techno-optimist-manifesto" target="_blank" rel="noopener noreferrer" class="modal-link">Manifeste Techno-Optimiste ↗</a>
+        <a href="https://pmarca.substack.com/p/the-techno-optimist-manifesto" target="_blank" rel="noopener noreferrer" class="modal-link">Le manifeste ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Leading_the_Future" target="_blank" rel="noopener noreferrer" class="modal-link">Leading the Future ↗</a>
       </div>
     </div>
   </div>
@@ -254,22 +279,18 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-ea-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Effective Altruism &amp; Longtermisme</h2>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);letter-spacing:0.05em;margin-top:var(--space-1)">EA · Nick Bostrom · Sam Bankman-Fried</p>
+        <h2 id="modal-ea-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Longtermisme</h2>
+        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-amber);letter-spacing:0.05em;margin-top:var(--space-1)">Effective Altruism · Bostrom · Bankman-Fried</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>L'Effective Altruism en bref</h4>
-      <p>L'EA est un mouvement philosophique né à Oxford qui cherche à "faire le bien de la manière la plus efficace possible" — en utilisant des metrics quantitatives pour comparer les interventions charitables. En soi, c'est un courant philosophique respectable avec des contributions réelles à la réflexion éthique.</p>
-      <h4>Le glissement vers le longtermisme</h4>
-      <p>Le problème émerge avec le "longtermisme" — une variante de l'EA qui affirme que les souffrances des générations futures (potentiellement des billions d'êtres, y compris numériques) doivent primer sur les souffrances présentes. Cette logique peut justifier des décisions radicales "pour le bien futur" qui violent des droits humains présents.</p>
-      <h4>Les liens avec les idéologies réactionnaires</h4>
-      <p>Le longtermisme a été critiqué pour ses proximités avec des formes de pensée eugéniste : la conviction que certaines personnes (les "cognitifs de haut niveau") doivent avoir plus d'enfants pour "optimiser" l'humanité future. Des figures EA comme Nick Bostrom ont des histoires personnelles problématiques sur ce sujet.</p>
-      <h4>L'effondrement FTX comme révélateur</h4>
-      <p>Sam Bankman-Fried, fondateur de FTX et philanthrope EA de premier rang, a utilisé la rhétorique longtermiste pour justifier une fraude massive à ses propres donateurs. L'affaire illustre comment cette logique peut fonctionner comme couverture morale pour des comportements prédateurs : les fins justifient les moyens dès lors que les fins sont présentées comme suffisamment grandes.</p>
+      <h4>Du calcul du bien au sacrifice du présent</h4>
+      <p>L'Effective Altruism (Oxford) veut "faire le bien" en mesurant l'impact. Le longtermisme en tire une conclusion radicale : les milliards d'humains — ou d'esprits numériques — à venir pèsent infiniment plus que les vivants. Toute souffrance présente devient un coût acceptable.</p>
+      <h4>Les angles morts</h4>
+      <p>Proximité avec l'eugénisme (qui doit se reproduire pour "optimiser" l'humanité future) ; e-mails racistes de Nick Bostrom ; Sam Bankman-Fried justifiant par cette rhétorique la fraude FTX contre ses propres donateurs. Les fins immenses excusent tous les moyens.</p>
+      <h4>Où en est-on</h4>
+      <p>L'EA "prudent" et l'e/acc "accélérateur" se disputent la régulation de l'IA — mais partagent le même cadre : le sort de l'humanité se décide dans quelques laboratoires, pas dans des parlements.</p>
     </div>
   </div>
 </div>
@@ -278,20 +299,18 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-trans-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Transhumanisme &amp; Post-humanisme</h2>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);letter-spacing:0.05em;margin-top:var(--space-1)">Neuralink · Biologie synthétique · Singularité</p>
+        <h2 id="modal-trans-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Transhumanisme</h2>
+        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);letter-spacing:0.05em;margin-top:var(--space-1)">Neuralink · Longévité · Singularité</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>La vision transhumaniste</h4>
-      <p>Le transhumanisme est la conviction que l'humanité doit et peut se dépasser biologiquement grâce à la technologie : augmentation cognitive, prolongation radicale de la vie, upload de la conscience, fusion avec les machines. Neuralink de Musk, les investissements dans la biologie synthétique, les recherches sur la longévité financées par des milliardaires tech en sont les expressions pratiques.</p>
-      <h4>La dimension de classe</h4>
-      <p>L'enjeu démocratique du transhumanisme est la question d'accès : si des augmentations biologiques ou cognitives deviennent disponibles, qui y aura accès ? Si seuls les très riches peuvent "s'améliorer", on aboutit à une bifurcation de l'espèce humaine — une élite augmentée et une majorité "standard" qui perd progressivement sa compétitivité économique et sociale.</p>
-      <h4>Singularité et politique</h4>
-      <p>Ray Kurzweil (auteur de "The Singularity is Near") et d'autres théoriciens de la singularité technologique prédisent un point de non-retour où l'IA dépasse l'intelligence humaine. Cette vision eschatologique de la technologie — une sorte de "rapture numérique" — justifie le sacrifice des contraintes démocratiques au nom d'un futur transcendant.</p>
+      <h4>La promesse</h4>
+      <p>Augmentation cognitive, vie prolongée, fusion avec la machine. Neuralink, les start-ups de longévité financées par Thiel ou Bezos, la "singularité" de Kurzweil en sont les formes concrètes et les récits.</p>
+      <h4>La question de classe</h4>
+      <p>Qui aura accès aux augmentations ? Si seuls les très riches peuvent "s'améliorer", l'espèce bifurque : une élite augmentée, une majorité standard déclassée. Le transhumanisme hiérarchique est l'eugénisme de Stanford avec des implants.</p>
+      <h4>Le lien politique</h4>
+      <p>La singularité fonctionne comme une eschatologie : un point de bascule si transcendant qu'il justifie de sacrifier les contraintes démocratiques présentes pour l'atteindre — ou pour en garder le contrôle.</p>
     </div>
   </div>
 </div>
@@ -300,20 +319,21 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-libert-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Libertarianisme de droite tech</h2>
-        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-green);letter-spacing:0.05em;margin-top:var(--space-1)">Anti-État · Marché libre · Ayn Rand</p>
+        <h2 id="modal-libert-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Libertarianisme autoritaire</h2>
+        <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-green);letter-spacing:0.05em;margin-top:var(--space-1)">Ayn Rand · Hayek · Thiel</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>L'héritage Ayn Rand</h4>
-      <p>De nombreux fondateurs de la Silicon Valley se revendiquent de l'objectivisme d'Ayn Rand : l'individu rationnel et productif est la valeur suprême, toute redistribution est un "vol", l'État doit se limiter à la protection des contrats et de la propriété. Cette philosophie est devenue la quasi-religion de la culture tech californienne.</p>
-      <h4>La contradiction fondamentale</h4>
-      <p>Le libertarianisme tech est profondément contradictoire : il proclame la liberté individuelle mais soutient des plateformes monopolistiques qui contrôlent l'espace informationnel de milliards de personnes. Il se réclame de l'"anti-État" mais cherche activement à capturer l'État pour le mettre au service de ses intérêts — DOGE, déréglementation sélective, privatisation des fonctions régaliennes.</p>
-      <h4>La séquence de Thiel</h4>
-      <p>Peter Thiel incarne cette contradiction : libertarien autoproclamé qui affirme que "freedom and democracy are incompatible", qui investit dans des outils de surveillance massive (<span class="gl-term" data-term="palantir" tabindex="0">Palantir</span>) et dans des candidats autoritaires. Le libertarianisme tech fonctionne comme une "liberté pour moi, pas pour toi" — liberté des entreprises, contrôle des corps et des déplacements des populations.</p>
+      <h4>L'héritage</h4>
+      <p>Ayn Rand pour les fondateurs : l'individu productif est la valeur suprême, l'impôt est un vol, l'État doit se limiter à protéger la propriété. Quinn Slobodian (<em>Hayek's Bastards</em>, 2025) montre comment ce néolibéralisme s'est marié à la race, à l'or et au QI.</p>
+      <h4>La contradiction</h4>
+      <p>Anti-État en parole, ce courant capture l'État en pratique : DOGE, contrats Palantir, décrets sur mesure, 75 Mds$ pour ICE. Il proclame la liberté d'expression et possède les plateformes qui la hiérarchisent. "Liberté pour moi, pas pour toi."</p>
+      <h4>Le cas Thiel</h4>
+      <p>Libertarien autoproclamé qui déclare liberté et démocratie incompatibles, investit dans la surveillance de masse et finance des candidats autoritaires. Slobodian et Tarnoff nomment "Muskism" cette variante : un anti-étatisme qui vit de commandes publiques.</p>
+      <div class="modal-links">
+        <a href="https://en.wikipedia.org/wiki/Hayek's_Bastards" target="_blank" rel="noopener noreferrer" class="modal-link">Hayek's Bastards ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -322,22 +342,20 @@
   <div class="modal">
     <div class="modal-header">
       <div>
-        <h2 id="modal-acc-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Accélérationnisme</h2>
+        <h2 id="modal-acc-title" style="font-size:var(--text-xl);font-weight:900;letter-spacing:-0.02em">Accélérationnisme radical</h2>
         <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-red-bright);letter-spacing:0.05em;margin-top:var(--space-1)">Nick Land · Effondrement · Extrémisme violent</p>
       </div>
-      <button class="modal-close" aria-label="Fermer">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
-      </button>
+      <button class="modal-close" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
     </div>
     <div class="modal-body">
-      <h4>⚠️ Attention : courant extrême</h4>
-      <p>L'accélérationnisme — dans sa forme radicale, à distinguer soigneusement du mouvement e/acc — est une idéologie qui prône l'effondrement délibéré du système capitaliste et démocratique pour précipiter une rupture révolutionnaire. Dans sa déclinaison suprémaciste blanche (White Supremacy Accelerationism, WSA), il a directement inspiré plusieurs attentats terroristes dans les années 2010-2020.</p>
-      <h4>Nick Land et la version tech</h4>
-      <p>Le philosophe britannique Nick Land a développé une version "techno-capitaliste" de l'accélérationnisme : le capital et la technologie doivent s'emballer jusqu'à produire une "singularité" qui échappe au contrôle humain. Cette vision nihiliste est explicitement anti-humaniste — la souffrance humaine présente est le prix à payer pour une évolution post-humaine.</p>
-      <h4>La porosité avec le NRx</h4>
-      <p>Land est à la fois un penseur majeur du NRx (il a co-développé le terme "Dark Enlightenment") et de l'accélérationnisme. Cette double appartenance crée une porosité entre l'idéologie de certains dirigeants tech "mainstream" (qui citent Land comme référence) et les mouvances extrémistes violentes qui s'en inspirent.</p>
+      <h4>⚠️ Un courant extrême</h4>
+      <p>À ne pas confondre avec l'e/acc : ici, il s'agit de précipiter délibérément l'effondrement du système pour provoquer une rupture. Dans sa déclinaison suprémaciste blanche, cette idéologie a inspiré plusieurs attentats dans les années 2010-2020.</p>
+      <h4>La version Land</h4>
+      <p>Capital et technique doivent s'emballer jusqu'à une singularité qui échappe au contrôle humain. Vision explicitement anti-humaniste : la souffrance présente est le prix d'une évolution post-humaine.</p>
+      <h4>La porosité</h4>
+      <p>Land est à la fois co-inventeur du "Dark Enlightenment" et théoricien de l'accélération. Cette double appartenance relie des dirigeants tech "mainstream" qui le citent (Andreessen) à des mouvances violentes qui s'en réclament. C'est cette porosité qu'il faut nommer.</p>
       <div class="modal-links">
-        <a href="https://en.wikipedia.org/wiki/Dark_Enlightenment" target="_blank" rel="noopener noreferrer" class="modal-link">Wikipedia : Dark Enlightenment ↗</a>
+        <a href="https://en.wikipedia.org/wiki/Dark_Enlightenment" target="_blank" rel="noopener noreferrer" class="modal-link">Dark Enlightenment ↗</a>
       </div>
     </div>
   </div>
@@ -346,7 +364,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-logo">TECHNO<span>FASCISME</span></div>
-    <nav class="footer-nav">
+    <nav class="footer-nav" aria-label="Navigation pied de page">
       <a href="../index.html">Accueil</a>
       <a href="origines.html">Origines</a>
       <a href="figures.html">Figures</a>
@@ -355,8 +373,7 @@
       <a href="democraties.html">Démocraties</a>
     </nav>
     <p class="footer-credit">
-      Réalisé par <a href="https://tristan.pro" target="_blank" rel="noopener noreferrer" class="footer-author">Tristan Mendès France</a> — 
-      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      Réalisé par <a href="https://tristan.pro" target="_blank" rel="noopener noreferrer" class="footer-author">Tristan Mendès France</a> · Dernière mise à jour : septembre 2026
     </p>
   </div>
 </footer>
