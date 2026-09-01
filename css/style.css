@@ -1367,7 +1367,7 @@ hr.section-divider {
 .footer-credit a:hover { color: var(--color-text-muted); }
 
 .footer-author {
-  color: var(--color-text-secondary) !important;
+  color: var(--color-text-muted) !important;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -1667,6 +1667,535 @@ hr.section-divider {
   }
 }
 
+/* ============================================================
+   V3 — Composants de la refonte (sept. 2026)
+   ============================================================ */
+
+/* ── Badge de mise à jour ───────────────────────────────────── */
+.update-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  background: var(--color-green-dim);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.update-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Hero compact (accueil v3) ──────────────────────────────── */
+.page-hero.compact {
+  min-height: auto;
+  padding: calc(var(--space-24) + 2rem) var(--space-8) var(--space-16);
+}
+
+.hero-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+
+/* ── Bandeau définition (une phrase) ────────────────────────── */
+.def-strip {
+  max-width: var(--content-wide);
+  margin: 0 auto var(--space-16);
+  padding: 0 var(--space-8);
+}
+
+.def-strip-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-6);
+  align-items: start;
+  padding: var(--space-6) var(--space-8);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-red-bright);
+  border-radius: var(--radius-xl);
+}
+
+.def-strip-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-red-bright);
+  padding-top: 0.2em;
+}
+
+.def-strip p {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.65;
+  max-width: 100%;
+}
+
+.def-strip p + p {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 640px) {
+  .def-strip-inner { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* ── Frise horizontale (actualité 2025-2026) ────────────────── */
+.tl-h-wrap {
+  position: relative;
+}
+
+.tl-h-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.tl-h-hint {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+}
+
+.tl-h-btns { display: flex; gap: var(--space-2); }
+
+.tl-h-btn {
+  width: 38px; height: 38px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-bright);
+  color: var(--color-text-muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+
+.tl-h-btn:hover { color: var(--color-cyan); border-color: var(--color-cyan-muted); background: var(--color-cyan-dim); }
+
+.tl-h {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: var(--space-6) var(--space-2) var(--space-4);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.evt {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  position: relative;
+  margin-top: var(--space-4);
+  transition: border-color var(--transition), transform var(--transition);
+  --evt-color: var(--color-red-bright);
+}
+
+.evt::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--space-4) - 11px);
+  left: var(--space-5);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--evt-color);
+  box-shadow: 0 0 10px var(--evt-color);
+}
+
+/* segment de frise reliant chaque carte à la suivante */
+.evt::after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--space-4) - 7px);
+  left: var(--space-5);
+  width: calc(100% + var(--space-4));
+  height: 1px;
+  background: linear-gradient(90deg, var(--evt-color), var(--color-border-bright));
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.evt:last-child::after { width: 40%; }
+
+.evt:hover { border-color: var(--evt-color); transform: translateY(-3px); }
+
+.evt[data-type="capture"]  { --evt-color: var(--color-red-bright); }
+.evt[data-type="infra"]    { --evt-color: var(--color-cyan); }
+.evt[data-type="politique"]{ --evt-color: var(--color-amber); }
+.evt[data-type="idees"]    { --evt-color: #a855f7; }
+.evt[data-type="europe"]   { --evt-color: var(--color-green); }
+
+.evt-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--evt-color);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.evt-type {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.evt h3 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  line-height: 1.35;
+}
+
+.evt p {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  max-width: 100%;
+}
+
+.evt a {
+  display: inline-block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+.evt a:hover { text-decoration: underline; }
+
+.tl-h-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* ── Badge de statut (fiches) ───────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.status-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-red   { color: var(--color-red-bright); border-color: var(--color-red); background: var(--color-red-dim); }
+.status-amber { color: var(--color-amber); border-color: rgba(245,158,11,0.4); background: var(--color-amber-dim); }
+.status-cyan  { color: var(--color-cyan); border-color: var(--color-cyan-muted); background: var(--color-cyan-dim); }
+.status-green { color: var(--color-green); border-color: rgba(34,197,94,0.4); background: var(--color-green-dim); }
+.status-ghost { color: var(--color-text-muted); border-color: var(--color-border); background: transparent; }
+
+/* ── Fiche figure v3 ────────────────────────────────────────── */
+.figure-card-header { align-items: flex-start; }
+
+.figure-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--color-divider);
+  background: var(--color-surface);
+}
+
+.figure-lever {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.figure-lever strong {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.figure-card-body .figure-hint {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color var(--transition);
+}
+
+.figure-card:hover .figure-hint { color: var(--color-red-bright); }
+
+/* ── Filtres (chips) ────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.filter-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-right: var(--space-2);
+}
+
+.filter-chip {
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  transition: all var(--transition);
+}
+
+.filter-chip:hover { color: var(--color-text); border-color: var(--color-border-bright); }
+
+.filter-chip[aria-pressed="true"] {
+  color: var(--color-red-bright);
+  border-color: var(--color-red);
+  background: var(--color-red-dim);
+}
+
+[data-filter-target].is-hidden { display: none; }
+
+/* ── Faits clés dans les modales ────────────────────────────── */
+.fact-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.fact-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.fact-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  padding-top: 0.25em;
+}
+
+.fact-row dd { color: var(--color-text-muted); max-width: 100%; }
+.fact-row dd strong { color: var(--color-text); }
+
+.modal-update {
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-left: 3px solid var(--color-green);
+  background: var(--color-green-dim);
+  border-radius: var(--radius-lg);
+}
+
+.modal-update h4 { color: var(--color-green); margin-top: 0 !important; }
+.modal-update p:last-child, .modal-update ul:last-child { margin-bottom: 0; }
+
+@media (max-width: 480px) {
+  .fact-row { grid-template-columns: 1fr; gap: var(--space-1); }
+}
+
+/* ── Tableau de bord d'indicateurs ──────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.kpi {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  --kpi-color: var(--color-red-bright);
+}
+
+.kpi[data-tone="red"]   { --kpi-color: var(--color-red-bright); }
+.kpi[data-tone="amber"] { --kpi-color: var(--color-amber); }
+.kpi[data-tone="cyan"]  { --kpi-color: var(--color-cyan); }
+.kpi[data-tone="green"] { --kpi-color: var(--color-green); }
+
+.kpi-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--kpi-color);
+}
+
+.kpi-value small {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0;
+  margin-left: var(--space-1);
+}
+
+.kpi-bar-track {
+  height: 4px;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: var(--space-1) 0;
+}
+
+.kpi-bar {
+  height: 100%;
+  width: 0;
+  border-radius: var(--radius-full);
+  background: var(--kpi-color);
+  box-shadow: 0 0 8px var(--kpi-color);
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kpi p {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  max-width: 100%;
+}
+
+.kpi-source {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--color-text-faint);
+  letter-spacing: 0.05em;
+  margin-top: auto;
+}
+
+.kpi-source a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+.kpi-source a:hover { color: var(--color-cyan); }
+
+/* ── Grille "en bref" (3 colonnes compactes) ────────────────── */
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.brief {
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.brief .card-label { margin-bottom: var(--space-3); }
+.brief h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-2); }
+.brief p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; max-width: 100%; }
+
+/* ── Tableau compact ────────────────────────────────────────── */
+.compact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.compact-table th {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.compact-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
+  color: var(--color-text-muted);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.compact-table td:first-child { color: var(--color-text); font-weight: 600; white-space: nowrap; }
+.compact-table tr:hover td { background: var(--color-surface-2); }
+
+/* ── Sections plus resserrées en v3 ─────────────────────────── */
+.section-header.tight { margin-bottom: var(--space-10); }
+
+/* ── Réseau : layout accueil ────────────────────────────────── */
+@media (max-width: 900px) {
+  .tl-h { padding-left: 0; }
+  .evt { flex-basis: 260px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1683,7 +2212,9 @@ hr.section-divider {
   .marquee-track,
   .hero-scroll-hint,
   .glitch::before,
-  .glitch::after {
+  .glitch::after,
+  .update-badge::before,
+  .warning-dot {
     animation: none !important;
   }
 }
