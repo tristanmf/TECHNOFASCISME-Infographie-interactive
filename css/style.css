@@ -2187,6 +2187,104 @@ hr.section-divider {
 .compact-table td:first-child { color: var(--color-text); font-weight: 600; white-space: nowrap; }
 .compact-table tr:hover td { background: var(--color-surface-2); }
 
+/* ── Réseau de pouvoir v3 : filtres, parcours, info-bulle ───── */
+.net-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.net-tour-launch { white-space: nowrap; }
+
+.chip-argent[aria-pressed="true"]     { color: #e8203e; border-color: #e8203e; background: rgba(232,32,62,0.12); }
+.chip-contrat[aria-pressed="true"]    { color: #00d4ff; border-color: #00d4ff; background: rgba(0,212,255,0.12); }
+.chip-politique[aria-pressed="true"]  { color: #f59e0b; border-color: #f59e0b; background: rgba(245,158,11,0.12); }
+.chip-idees[aria-pressed="true"]      { color: #a855f7; border-color: #a855f7; background: rgba(168,85,247,0.12); }
+.chip-regulation[aria-pressed="true"] { color: #22c55e; border-color: #22c55e; background: rgba(34,197,94,0.12); }
+
+.legend-line {
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.legend-line.dashed { background-image: repeating-linear-gradient(90deg, transparent 0 4px, rgba(6,6,8,1) 4px 7px); }
+.legend-line.dotted { background-image: repeating-linear-gradient(90deg, transparent 0 2px, rgba(6,6,8,1) 2px 5px); }
+.legend-size {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-text-faint);
+  box-shadow: -10px 0 0 -4px var(--color-text-faint);
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.net-tour {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(232,32,62,0.35);
+  border-left: 3px solid var(--color-red-bright);
+  background: var(--color-red-dim);
+  border-radius: var(--radius-lg);
+}
+.net-tour.running { display: flex; }
+.net-tour-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.net-tour-label strong { color: var(--color-red-bright); margin-left: var(--space-2); }
+.net-tour-btns { display: flex; gap: var(--space-2); align-items: center; }
+.net-tour-btns button:disabled { opacity: 0.35; cursor: default; }
+
+.network-link-item strong { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+.net-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.net-type {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+#net-tip {
+  position: absolute;
+  max-width: 240px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border-bright);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+#net-tip.visible { opacity: 1; }
+
+@media (max-width: 900px) {
+  .net-toolbar { flex-direction: column; align-items: stretch; }
+  .net-tour-launch { text-align: center; justify-content: center; }
+  .network-container { height: 420px; }
+}
+
 /* ── Sections plus resserrées en v3 ─────────────────────────── */
 .section-header.tight { margin-bottom: var(--space-10); }
 
