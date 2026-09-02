@@ -116,30 +116,54 @@
     <div class="section-header tight fade-in">
       <span class="section-eyebrow">01 · Carte interactive</span>
       <h2 id="network-heading" class="section-title">Le réseau de pouvoir</h2>
-      <p class="section-lead">Cliquez sur un nœud : ses connexions s'allument et le panneau explique ce qui relie les acteurs.</p>
+      <p class="section-lead">La couleur d'un lien dit sa nature. Touchez un nœud ou un lien pour l'explication, ou suivez le parcours guidé : il montre la boucle argent → pouvoir → contrats → argent.</p>
     </div>
+
+    <div class="net-toolbar fade-in">
+      <div class="filter-bar" style="margin:0" role="group" aria-label="Filtrer les liens par nature">
+        <span class="filter-label">Liens</span>
+        <button class="filter-chip" data-edge-filter="all" aria-pressed="true">Tous</button>
+        <button class="filter-chip chip-argent" data-edge-filter="argent" aria-pressed="false">Argent</button>
+        <button class="filter-chip chip-contrat" data-edge-filter="contrat" aria-pressed="false">Contrats</button>
+        <button class="filter-chip chip-politique" data-edge-filter="politique" aria-pressed="false">Pouvoir</button>
+        <button class="filter-chip chip-idees" data-edge-filter="idees" aria-pressed="false">Idées</button>
+        <button class="filter-chip chip-regulation" data-edge-filter="regulation" aria-pressed="false">Régulation</button>
+      </div>
+      <button class="btn btn-primary net-tour-launch" id="net-tour-start">▶ Parcours guidé · 6 étapes</button>
+    </div>
+
     <div class="network-layout fade-in">
       <div class="network-container">
         <canvas id="network-canvas" role="img" aria-label="Réseau de connexions entre acteurs du technofascisme"></canvas>
       </div>
       <aside class="card network-detail" aria-live="polite">
+        <div class="net-tour" id="net-tour">
+          <span class="net-tour-label">Parcours guidé <strong id="net-tour-step">1 / 6</strong></span>
+          <div class="net-tour-btns">
+            <button class="tl-h-btn" id="net-tour-prev" aria-label="Étape précédente">←</button>
+            <button class="btn btn-secondary" id="net-tour-next" style="padding:var(--space-2) var(--space-4)">Suivant →</button>
+            <button class="tl-h-btn" id="net-tour-exit" aria-label="Quitter le parcours">✕</button>
+          </div>
+        </div>
         <div>
           <div class="card-label" id="network-detail-kicker">Lecture guidée</div>
-          <h3 id="network-detail-title">Peter Thiel</h3>
-          <p id="network-detail-body">Sélectionnez un nœud pour voir pourquoi il compte et à quoi il est relié.</p>
+          <h3 id="network-detail-title">Comment lire cette carte</h3>
+          <p id="network-detail-body">La couleur d'un lien dit sa nature. Touchez un nœud pour ses connexions, ou lancez le parcours en six étapes.</p>
         </div>
         <div class="network-links" id="network-detail-links"></div>
         <div class="network-cta">
-          <a id="network-detail-link" href="pages/figures.html" class="btn btn-secondary">Ouvrir la page liée</a>
+          <a id="network-detail-link" href="pages/figures.html" class="btn btn-secondary">Ouvrir les fiches</a>
         </div>
       </aside>
     </div>
+
     <div class="network-legend fade-in">
-      <div class="legend-item"><div class="legend-dot" style="background:#c8102e"></div>Figures</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#00d4ff"></div>Entreprises</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Institutions</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Idéologies</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div>Contre-pouvoirs</div>
+      <div class="legend-item"><span class="legend-line" style="background:#e8203e"></span>Argent &amp; capital</div>
+      <div class="legend-item"><span class="legend-line" style="background:#00d4ff"></span>Contrats publics</div>
+      <div class="legend-item"><span class="legend-line" style="background:#f59e0b"></span>Pouvoir politique</div>
+      <div class="legend-item"><span class="legend-line dashed" style="background:#a855f7"></span>Idées</div>
+      <div class="legend-item"><span class="legend-line dotted" style="background:#22c55e"></span>Régulation</div>
+      <div class="legend-item" style="margin-left:var(--space-4)"><span class="legend-size"></span>Taille = nombre de connexions</div>
     </div>
   </div>
 </section>
